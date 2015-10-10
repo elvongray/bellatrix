@@ -1,0 +1,17 @@
+body {
+  overflow: hidden;
+}
+
+.text-editor {
+  background-color: lightblue;
+  width: 50%;
+  height: 0;
+  padding-bottom: 60%;
+}
+
+.terminal {
+  background-color: black;
+  width: 50%;
+  height: 0;
+  padding-bottom: 60%;
+}

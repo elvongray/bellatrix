@@ -1,21 +1,80 @@
 var React = require('react');
 
+var jqconsole,
+    jsrepl;
+
 require('../../css/style.css');
 
 var TerminalContainer = React.createClass({
 
-  componentDidMount: function() {
-    var jqconsole = $('#console').jqconsole('Hi\n', '>>>');
-    var startPrompt = function () {
-      // Start the prompt with history enabled.
-      jqconsole.Prompt(true, function (input) {
-        // Output input with the class jqconsole-output.
-        jqconsole.Write(input + '\n', 'jqconsole-output');
-        // Restart the prompt.
-        startPrompt();
+  getInitialState: function() {
+    return  {
+      language: 'javascript'
+    }
+  },
+
+  componentWillMount: function() {
+
+    var inputCallback = function(callback) {
+      jqconsole.Input(function(result) {
+          callback(result);
       });
     };
-    startPrompt();
+
+    var outputCallback = function(string) {
+      jqconsole.Write(string.replace(/\s+/, "") + '\n', 'jqconsole-output');
+    };
+
+    var resultCallback = function(string) {
+      if(string) {
+        jqconsole.Write("=>" + string + '\n', 'jqconsole-output');
+      }
+    };
+
+    var errorCallback = function(string) {
+      jqconsole.Write(string + '\n', 'jqconsole-output');
+      console.log("called");
+    };
+
+    var progressCallback = function(m) {
+      console.log(m);
+    };
+
+    var timeoutCallback = function() {
+      console.log("timedout");
+      return true
+    };
+
+    jsrepl = new JSREPL({
+      input: inputCallback,
+      output: outputCallback,
+      result: resultCallback,
+      error: errorCallback,
+      progress: progressCallback,
+      timeout: {
+        time: 30000,
+        callback: timeoutCallback
+      }
+    });
+  },
+
+  componentDidMount: function() {
+    jsrepl.loadLanguage(this.state.language, function () {
+
+      jqconsole = $('#console').jqconsole('Hi\n', '>');
+      var startPrompt = function () {
+        // Start the prompt with history enabled.
+        jqconsole.Prompt(true, function (input) {
+          // Output input with the class jqconsole-output.
+          jsrepl.eval(input)
+          // Restart the prompt.
+          startPrompt();
+        });
+      };
+      startPrompt();
+
+      jqconsole.Write('Javascript loaded...\n', 'jqconsole-output');
+    });
   },
 
   render: function() {

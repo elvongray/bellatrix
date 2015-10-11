@@ -7,9 +7,12 @@
   </head>
   <body>
     <div id="bellatrix"></div>
+    <!-- Note: Remove this jquery dependence -->
+    <script src="js/externals/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script src="js/externals/jqconsole.js"></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/externals/src-min/ace.js"></script>
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    <script src="http://localhost:8080/app/bundle.js"></script>
   </body>
-  <script src="js/material.min.js"></script>
-  <script src="js/externals/src-min/ace.js"></script>
-  <script src="http://localhost:8080/webpack-dev-server.js"></script>
-  <script src="http://localhost:8080/app/bundle.js"></script>
 </html>

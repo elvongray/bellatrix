@@ -1,6 +1,7 @@
 var React = require('react');
 
 var TextEditorContainer = require('./components/TextEditorContainer');
+var TerminalContainer = require('./components/TerminalContainer');
 
 require('../css/style.css');
 
@@ -13,6 +14,7 @@ var Bellatrix = React.createClass({
           <TextEditorContainer />
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
+          <TerminalContainer />
         </div>
       </div>
     );

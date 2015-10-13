@@ -1,3 +1,5 @@
+var ipc = window.require('ipc');
+
 var React = require('react');
 
 var TextEditorContainer = require('./components/TextEditorContainer');
@@ -20,6 +22,11 @@ var Bellatrix = React.createClass({
     );
   }
 
+});
+
+
+ipc.on('change-theme', function(theme) {
+  console.log(theme)
 });
 
 React.render(<Bellatrix />, document.getElementById('bellatrix'));

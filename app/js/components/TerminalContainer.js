@@ -36,8 +36,8 @@ var TerminalContainer = React.createClass({
       console.log("called");
     };
 
-    var progressCallback = function(m) {
-      console.log(m);
+    var progressCallback = function(m, n) {
+      console.log(n);
     };
 
     var timeoutCallback = function() {
@@ -72,7 +72,6 @@ var TerminalContainer = React.createClass({
         });
       };
       startPrompt();
-
       jqconsole.Write('Javascript loaded...\n', 'jqconsole-output');
     });
   },
@@ -83,7 +82,7 @@ var TerminalContainer = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header terminal-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">Stuffs</span>
+            <span className="mdl-layout-title">clear</span>
           </div>
         </header>
         <div id="console">

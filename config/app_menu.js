@@ -17,6 +17,22 @@ function prepareThemeSubmenu() {
   return themeSubmenu;
 }
 
+//prepare language
+function prepareLanguagesSubmenu() {
+  var languageSubmenu = [];
+  for(var i = 0; i < menuOptions.languages.length; i++) {
+    var labels = {}
+    labels.label = menuOptions.languages[i][0]
+    labels.sublabel = menuOptions.languages[i][1]
+    labels.click = function(item, browserWindow) {
+      browserWindow.webContents.send('change-language', item.sublabel);
+    }
+
+    languageSubmenu.push(labels);
+  }
+  return languageSubmenu;
+}
+
 // Define menu template
 var template = [
   {
@@ -86,6 +102,10 @@ var template = [
         }
       },
     ]
+  },
+  {
+    label: 'Languages',
+    submenu: prepareLanguagesSubmenu()
   },
   {
     label: 'Window',
@@ -160,7 +180,7 @@ if (process.platform == 'darwin') {
     ]
   });
   // Window menu.
-  template[3].submenu.push(
+  template[4].submenu.push(
     {
       type: 'separator'
     },

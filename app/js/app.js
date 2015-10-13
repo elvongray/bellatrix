@@ -8,6 +8,7 @@ var TerminalContainer = require('./components/TerminalContainer');
 require('../css/style.css');
 
 var Bellatrix = React.createClass({
+
   getInitialState: function() {
     return  {
       theme: 'twilight',
@@ -15,9 +16,9 @@ var Bellatrix = React.createClass({
     }
   },
 
-  changeLanguage: function(theme) {
+  changeLanguage: function(language) {
     this.setState({
-      language: theme
+      language: language
     });
   },
 
@@ -31,6 +32,10 @@ var Bellatrix = React.createClass({
     var self = this;
     ipc.on('change-theme', function(theme) {
       self.changeEditorTheme(theme);
+    });
+
+    ipc.on('change-language', function(language) {
+      self.changeLanguage(language);
     });
   },
 

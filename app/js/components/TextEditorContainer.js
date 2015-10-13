@@ -11,16 +11,25 @@ var TextEditorContainer = React.createClass({
     aceEditor.setTheme("ace/theme/" + theme);
   },
 
+  changeLanguage: function(language) {
+    if (language === 'coffeescript') language = 'coffee';
+    aceEditor.session.setMode("ace/mode/" + language);
+  },
+
   componentWillReceiveProps: function(nextProps) {
-    if(nextProps.theme !== this.props.theme) {
+    if (nextProps.theme !== this.props.theme) {
       this.changeTheme(nextProps.theme);
+    }
+
+    if (nextProps.language !== this.props.language) {
+      this.changeLanguage(nextProps.language);
     }
   },
 
   componentDidMount: function() {
     aceEditor = ace.edit("editor");
     aceEditor.setTheme("ace/theme/" + this.props.theme);
-    aceEditor.session.setMode("ace/mode/javascript");
+    aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
   },
 
@@ -30,7 +39,7 @@ var TextEditorContainer = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">Javascript</span>
+            <span className="mdl-layout-title">{this.props.language}</span>
           </div>
         </header>
         <main className="mdl-layout__content">

@@ -2,10 +2,10 @@
 // application menu, will change when the app grows.
 
 exports.languages = [
-  ["Javascript", "javascript"]
-  ["Ruby", "ruby"]
-  ["Python", "python"]
-  ["Coffeescript", "coffeescript"]
+  ["Javascript", "javascript"],
+  ["Ruby", "ruby"],
+  ["Python", "python"],
+  ["Coffeescript", "coffeescript"],
   ["Lua", "lua"]
 ];
 

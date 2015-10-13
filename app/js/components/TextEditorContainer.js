@@ -7,14 +7,25 @@ require('../../css/style.css');
 
 var TextEditorContainer = React.createClass({
 
+  changeTheme: function(theme) {
+    aceEditor.setTheme("ace/theme/" + theme);
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if(nextProps.theme !== this.props.theme) {
+      this.changeTheme(nextProps.theme);
+    }
+  },
+
   componentDidMount: function() {
-    var aceEditor = ace.edit("editor");
-    aceEditor.setTheme("ace/theme/twilight");
+    aceEditor = ace.edit("editor");
+    aceEditor.setTheme("ace/theme/" + this.props.theme);
     aceEditor.session.setMode("ace/mode/javascript");
     aceEditor.setShowPrintMargin(false);
   },
 
   render: function() {
+
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header text-editor-header">

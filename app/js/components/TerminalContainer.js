@@ -7,9 +7,27 @@ require('../../css/style.css');
 
 var TerminalContainer = React.createClass({
 
-  getInitialState: function() {
-    return  {
-      language: 'javascript'
+  loadLanguage: function(language) {
+
+    jsrepl.loadLanguage(language, function () {
+      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>');
+      var startPrompt = function () {
+        // Start the prompt with history enabled.
+        jqconsole.Prompt(true, function (input) {
+          // Output input with the class jqconsole-output.
+          jsrepl.eval(input)
+          // Restart the prompt.
+          startPrompt();
+        });
+      };
+      startPrompt();
+    });
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if(this.props.language !== nextProps.language) {
+      $('#console').empty();
+      this.loadLanguage(nextProps.language);
     }
   },
 
@@ -22,7 +40,7 @@ var TerminalContainer = React.createClass({
     };
 
     var outputCallback = function(string) {
-      jqconsole.Write(string.replace(/\s+/, "") + '\n', 'jqconsole-output');
+      jqconsole.Write(string.trimRight() + '\n', 'jqconsole-output');
     };
 
     var resultCallback = function(string) {
@@ -59,21 +77,11 @@ var TerminalContainer = React.createClass({
   },
 
   componentDidMount: function() {
-    jsrepl.loadLanguage(this.state.language, function () {
+    this.loadLanguage(this.props.language);
+  },
 
-      jqconsole = $('#console').jqconsole('Hi\n', '>');
-      var startPrompt = function () {
-        // Start the prompt with history enabled.
-        jqconsole.Prompt(true, function (input) {
-          // Output input with the class jqconsole-output.
-          jsrepl.eval(input)
-          // Restart the prompt.
-          startPrompt();
-        });
-      };
-      startPrompt();
-      jqconsole.Write('Javascript loaded...\n', 'jqconsole-output');
-    });
+  crap: function() {
+    jqconsole.Write(jsrepl.eval('for(var i = 0; i < 5; i++) {     console.log("crap")    }'));
   },
 
   render: function() {
@@ -82,7 +90,7 @@ var TerminalContainer = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header terminal-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">clear</span>
+            <span className="mdl-layout-title" onClick={this.crap}>clear</span>
           </div>
         </header>
         <div id="console">

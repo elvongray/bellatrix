@@ -29,6 +29,10 @@ var Bellatrix = React.createClass({
   },
 
   componentWillMount: function() {
+    /*
+    * Register event to change theme and language
+    * When component is mounted.
+    */
     var self = this;
     ipc.on('change-theme', function(theme) {
       self.changeEditorTheme(theme);
@@ -49,7 +53,9 @@ var Bellatrix = React.createClass({
           />
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
-          <TerminalContainer />
+          <TerminalContainer
+            language={this.state.language}
+          />
         </div>
       </div>
     );

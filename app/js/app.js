@@ -12,7 +12,8 @@ var Bellatrix = React.createClass({
   getInitialState: function() {
     return  {
       theme: 'twilight',
-      language: 'javascript'
+      language: 'javascript',
+      editorText: ''
     }
   },
 
@@ -43,6 +44,12 @@ var Bellatrix = React.createClass({
     });
   },
 
+  getEditorText: function(text) {
+    this.setState({
+      editorText: text
+    });
+  },
+
   render: function() {
     return (
       <div className="mdl-grid mdl-grid--no-spacing editor-container">
@@ -50,11 +57,13 @@ var Bellatrix = React.createClass({
           <TextEditorContainer
             theme={this.state.theme}
             language={this.state.language}
+            getEditorText={this.getEditorText}
           />
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
           <TerminalContainer
             language={this.state.language}
+            editorText={this.state.editorText}
           />
         </div>
       </div>

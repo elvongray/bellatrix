@@ -12,6 +12,11 @@ var TerminalContainer = React.createClass({
       $('#console').empty();
       this.loadLanguage(nextProps.language);
     }
+
+    // Retrieve code in editor
+    if(nextProps.editorText) {
+      this.evaluateCode(nextProps.editorText)
+    }
   },
 
   componentWillMount: function() {
@@ -82,9 +87,9 @@ var TerminalContainer = React.createClass({
     });
   },
 
-  Later: function() {
+  evaluateCode: function(code) {
     jqconsole.AbortPrompt();
-    jsrepl.eval('for(var i = 0; i < 5; i++){console.log("crap")}');
+    jsrepl.eval(code);
     this.startPrompt();
   },
 

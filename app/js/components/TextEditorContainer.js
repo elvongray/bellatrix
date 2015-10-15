@@ -14,6 +14,7 @@ var TextEditorContainer = React.createClass({
   changeLanguage: function(language) {
     if (language === 'coffeescript') language = 'coffee';
     aceEditor.session.setMode("ace/mode/" + language);
+    aceEditor.setValue("");
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -33,13 +34,20 @@ var TextEditorContainer = React.createClass({
     aceEditor.setShowPrintMargin(false);
   },
 
+  getEditorText: function() {
+    this.props.getEditorText(aceEditor.getValue());
+  },
+
   render: function() {
 
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title">{this.props.language}</span>
+            <span className="mdl-layout-title" >{this.props.language}</span>
+            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.getEditorText}>
+              Run
+            </button>
           </div>
         </header>
         <main className="mdl-layout__content">

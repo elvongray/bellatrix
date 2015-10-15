@@ -42,6 +42,10 @@ body {
   text-transform: capitalize;
 }
 
+.mdl-layout__header-row span {
+  margin: 0px auto;
+}
+
 .page-content {
   width: 100%;
   height: 100%;

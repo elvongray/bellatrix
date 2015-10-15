@@ -7,25 +7,6 @@ require('../../css/style.css');
 
 var TerminalContainer = React.createClass({
 
-  startPrompt: function() {
-    // Start the prompt with history enabled.
-    var self = this;
-    jqconsole.Prompt(true, function (input) {
-      // Output input with the class jqconsole-output.
-      jsrepl.eval(input)
-      // Restart the prompt.
-      self.startPrompt();
-    });
-  },
-
-  loadLanguage: function(language) {
-    var self = this;
-    jsrepl.loadLanguage(language, function () {
-      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>');
-      self.startPrompt();
-    });
-  },
-
   componentWillReceiveProps: function(nextProps) {
     if(this.props.language !== nextProps.language) {
       $('#console').empty();
@@ -82,10 +63,33 @@ var TerminalContainer = React.createClass({
     this.loadLanguage(this.props.language);
   },
 
-  crap: function() {
+  startPrompt: function() {
+    // Start the prompt with history enabled.
+    var self = this;
+    jqconsole.Prompt(true, function (input) {
+      // Output input with the class jqconsole-output.
+      jsrepl.eval(input)
+      // Restart the prompt.
+      self.startPrompt();
+    });
+  },
+
+  loadLanguage: function(language) {
+    var self = this;
+    jsrepl.loadLanguage(language, function () {
+      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>');
+      self.startPrompt();
+    });
+  },
+
+  Later: function() {
     jqconsole.AbortPrompt();
-    jsrepl.eval('for(var i = 0; i < 5; i++) {console.log("crap")}');
+    jsrepl.eval('for(var i = 0; i < 5; i++){console.log("crap")}');
     this.startPrompt();
+  },
+
+  clearTerminal: function() {
+    jqconsole.Clear();
   },
 
   render: function() {
@@ -94,7 +98,7 @@ var TerminalContainer = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header terminal-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title" onClick={this.crap}>clear</span>
+            <span className="mdl-layout-title" onClick={this.clearTerminal}>clear</span>
           </div>
         </header>
         <div id="console">

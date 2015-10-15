@@ -7,20 +7,22 @@ require('../../css/style.css');
 
 var TerminalContainer = React.createClass({
 
-  loadLanguage: function(language) {
+  startPrompt: function() {
+    // Start the prompt with history enabled.
+    var self = this;
+    jqconsole.Prompt(true, function (input) {
+      // Output input with the class jqconsole-output.
+      jsrepl.eval(input)
+      // Restart the prompt.
+      self.startPrompt();
+    });
+  },
 
+  loadLanguage: function(language) {
+    var self = this;
     jsrepl.loadLanguage(language, function () {
       jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>');
-      var startPrompt = function () {
-        // Start the prompt with history enabled.
-        jqconsole.Prompt(true, function (input) {
-          // Output input with the class jqconsole-output.
-          jsrepl.eval(input)
-          // Restart the prompt.
-          startPrompt();
-        });
-      };
-      startPrompt();
+      self.startPrompt();
     });
   },
 
@@ -51,7 +53,6 @@ var TerminalContainer = React.createClass({
 
     var errorCallback = function(string) {
       jqconsole.Write(string + '\n', 'jqconsole-output');
-      console.log("called");
     };
 
     var progressCallback = function(m, n) {
@@ -77,11 +78,14 @@ var TerminalContainer = React.createClass({
   },
 
   componentDidMount: function() {
+    var self = this;
     this.loadLanguage(this.props.language);
   },
 
   crap: function() {
-    jqconsole.Write(jsrepl.eval('for(var i = 0; i < 5; i++) {     console.log("crap")    }'));
+    jqconsole.AbortPrompt();
+    jsrepl.eval('for(var i = 0; i < 5; i++) {console.log("crap")}');
+    this.startPrompt();
   },
 
   render: function() {

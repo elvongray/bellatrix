@@ -1,5 +1,8 @@
 var React = require('react');
 
+var languageMultilineHandler = require('../lang_config/multiline-handler')
+                                .languageMultilineHandler;
+
 var jqconsole,
     jsrepl;
 
@@ -76,13 +79,15 @@ var TerminalContainer = React.createClass({
       jsrepl.eval(input)
       // Restart the prompt.
       self.startPrompt();
+    }, function(command) {
+      return languageMultilineHandler(self.props.language, command);
     });
   },
 
   loadLanguage: function(language) {
     var self = this;
     jsrepl.loadLanguage(language, function () {
-      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>');
+      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>', '...');
       self.startPrompt();
     });
   },

@@ -6,7 +6,8 @@ exports.languages = [
   ["Ruby", "ruby"],
   ["Python", "python"],
   ["Coffeescript", "coffeescript"],
-  ["Lua", "lua"]
+  ["Lua", "lua"],
+  ["Markdown", "markdown"]
 ];
 
 exports.themes = [

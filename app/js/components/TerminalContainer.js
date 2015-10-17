@@ -3,6 +3,8 @@ var React = require('react');
 var languageMultilineHandler = require('../lang_config/multiline-handler')
                                 .languageMultilineHandler;
 
+// Note: jqconsole and jsrepl loaded in
+// the index.html
 var jqconsole,
     jsrepl;
 

@@ -28,13 +28,21 @@ var TextEditorContainer = React.createClass({
   },
 
   componentDidMount: function() {
+    var self = this;
     aceEditor = ace.edit("editor");
     aceEditor.setTheme("ace/theme/" + this.props.theme);
     aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
+    aceEditor.getSession().on('change', function(e) {
+      self.handleEditorChange(e);
+    });
   },
 
   getEditorText: function() {
+    this.props.getEditorText(aceEditor.getValue());
+  },
+
+  handleEditorChange: function(event) {
     this.props.getEditorText(aceEditor.getValue());
   },
 

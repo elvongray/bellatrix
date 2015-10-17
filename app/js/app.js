@@ -4,6 +4,7 @@ var React = require('react');
 
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
+var MarkdownContainer = require('./components/MarkdownContainer');
 
 require('../css/style.css');
 
@@ -51,6 +52,24 @@ var Bellatrix = React.createClass({
   },
 
   render: function() {
+    var display;
+    // If language is mardown display markdown container
+    // else display editor
+    if (this.state.language === 'markdown') {
+      display = (
+        <MarkdownContainer
+          editorText={this.state.editorText}
+        />
+      );
+    }
+    else {
+      display = (
+        <TerminalContainer
+          language={this.state.language}
+          editorText={this.state.editorText}
+        />
+      );
+    }
     return (
       <div className="mdl-grid mdl-grid--no-spacing editor-container">
         <div className="mdl-cell mdl-cell--6-col text-editor">
@@ -61,10 +80,7 @@ var Bellatrix = React.createClass({
           />
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
-          <TerminalContainer
-            language={this.state.language}
-            editorText={this.state.editorText}
-          />
+          {display}
         </div>
       </div>
     );

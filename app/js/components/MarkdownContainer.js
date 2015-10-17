@@ -23,7 +23,8 @@ var MarkdownConatiner = React.createClass({
   componentWillMount: function() {
     md = markdownit({
       html: true,
-      linkify: true
+      linkify: true,
+      typographer: true
     });
   },
 

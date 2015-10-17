@@ -43,7 +43,9 @@ var TextEditorContainer = React.createClass({
   },
 
   handleEditorChange: function(event) {
-    this.props.getEditorText(aceEditor.getValue());
+    if(this.props.language === "markdown") {
+      this.props.getEditorText(aceEditor.getValue());
+    }
   },
 
   render: function() {

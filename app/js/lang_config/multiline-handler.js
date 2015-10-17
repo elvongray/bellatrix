@@ -14,7 +14,7 @@ exports.languageMultilineHandler = function(language, command) {
         return handleRuby(command);
         break;
 
-      case 'coffescript':
+      case 'coffeescript':
         return handleCoffeeScript(command)
         break;
    }

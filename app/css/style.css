@@ -139,27 +139,80 @@ body {
 * markdown styling
 */
 
-a{ color: #0645ad; text-decoration:none;}
-a:visited{ color: #0b0080; }
-a:hover{ color: #06e; }
-a:active{ color:#faa700; }
-a:focus{ outline: thin dotted; }
-a:hover, a:active{ outline: 0; }
+a {
+  color: #0645ad;
+  text-decoration: none;
+}
+a:visited {
+  color: #0b0080;
+}
+a:hover{
+  color: #06e;
+}
+a:active{
+  color:#faa700;
+}
+a:focus{
+  outline: thin dotted;
+}
+a:hover, a:active{
+  outline: 0;
+}
 
-p{margin:1em 0;}
-img{max-width:100%;}
+p {
+  margin: 1em 0;
+}
 
-h1,h2,h3,h4,h5,h6{font-weight:normal;color:#111;line-height:1em;}
-h4,h5,h6{ font-weight: bold; }
-h1{ font-size:2.5em; }
-h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
-h3{ font-size:1.5em; }
-h4{ font-size:1.2em; }
-h5{ font-size:1em; }
-h6{ font-size:0.9em; }
+img {
+  max-width:100%;
+}
 
-blockquote{color:#666666;margin:0;padding-left: 3em;border-left: 0.5em #EEE solid;}
-hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+  color: #111;
+  line-height: 1em;
+}
+
+h4,h5,h6 {
+  font-weight: bold;
+}
+h1 {
+  font-size:2.5em;
+}
+h2 {
+  font-size:2em;
+  border-bottom:1px solid silver;
+  padding-bottom: 5px;
+}
+h3 {
+  font-size:1.5em;
+}
+h4{
+  font-size:1.2em;
+}
+h5{
+  font-size:1em;
+}
+h6{
+  font-size:0.9em;
+}
+
+blockquote {
+  color: #666666;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+
+hr {
+  display: block;
+  height: 2px;
+  border: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #eee;
+  margin: 1em 0;
+  padding: 0;
+}
 
 pre, code{
   font-family:Consolas, "Liberation Mono", Menlo, Courier, monospace;

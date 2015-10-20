@@ -41,12 +41,12 @@ var template = [
       {
         label: 'Undo',
         accelerator: 'CmdOrCtrl+Z',
-        role: 'undo'
+        selector: 'undo:'
       },
       {
         label: 'Redo',
         accelerator: 'Shift+CmdOrCtrl+Z',
-        role: 'redo'
+        selector: 'redo:'
       },
       {
         type: 'separator'
@@ -54,22 +54,22 @@ var template = [
       {
         label: 'Cut',
         accelerator: 'CmdOrCtrl+X',
-        role: 'cut'
+        selector: 'cut:'
       },
       {
         label: 'Copy',
         accelerator: 'CmdOrCtrl+C',
-        role: 'copy'
+        selector: 'copy:'
       },
       {
         label: 'Paste',
         accelerator: 'CmdOrCtrl+V',
-        role: 'paste'
+        selector: 'paste:'
       },
       {
         label: 'Select All',
         accelerator: 'CmdOrCtrl+A',
-        role: 'selectall'
+        selector: 'selectall:'
       },
     ]
   },
@@ -109,23 +109,23 @@ var template = [
   },
   {
     label: 'Window',
-    role: 'window',
+    selector: 'window:',
     submenu: [
       {
         label: 'Minimize',
         accelerator: 'CmdOrCtrl+M',
-        role: 'minimize'
+        selector: 'minimize:'
       },
       {
         label: 'Close',
         accelerator: 'CmdOrCtrl+W',
-        role: 'close'
+        selector: 'close:'
       },
     ]
   },
   {
     label: 'Help',
-    role: 'help',
+    selector: 'help:',
     submenu: [
       {
         label: 'Learn More',
@@ -142,14 +142,14 @@ if (process.platform == 'darwin') {
     submenu: [
       {
         label: 'About ' + name,
-        role: 'about'
+        selector: 'about:'
       },
       {
         type: 'separator'
       },
       {
         label: 'Services',
-        role: 'services',
+        selector: 'services:',
         submenu: []
       },
       {
@@ -158,16 +158,16 @@ if (process.platform == 'darwin') {
       {
         label: 'Hide ' + name,
         accelerator: 'Command+H',
-        role: 'hide'
+        selector: 'hide:'
       },
       {
         label: 'Hide Others',
         accelerator: 'Command+Shift+H',
-        role: 'hideothers'
+        selector: 'hideothers:'
       },
       {
         label: 'Show All',
-        role: 'unhide'
+        selector: 'unhide:'
       },
       {
         type: 'separator'
@@ -186,7 +186,7 @@ if (process.platform == 'darwin') {
     },
     {
       label: 'Bring All to Front',
-      role: 'front'
+      selector: 'front:'
     }
   );
 }

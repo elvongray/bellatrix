@@ -11,6 +11,11 @@
     <script src="js/externals/build/jsrepl.js" id="jsrepl-script"></script>
     <script src="js/externals/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
     <script src="js/externals/jqconsole.js"></script>
+    <script type="text/javascript">
+    //initialize the remote module
+    // NOTE: This is bad!
+      var remote = require('remote');
+    </script>
     <script src="js/externals/material.min.js"></script>
     <script src="js/externals/src-min/ace.js"></script>
     <script src="js/externals/markdown-it.min.js"></script>

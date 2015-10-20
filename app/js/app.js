@@ -2,6 +2,9 @@ var ipc = window.require('ipc');
 
 var React = require('react');
 
+//initialize context menu
+require('./context_menu').contextMenu();
+
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
 var MarkdownContainer = require('./components/MarkdownContainer');

@@ -47,7 +47,6 @@ exports.languageMultilineHandler = function(language, command) {
     last_line_changes = 0;
     ref = command.split('\n');
     for (i = 0, len = ref.length; i < len; i++) {
-      console.log("called");
       line = ref[i];
       last_line_changes = 0;
       ref1 = line.match(TOKENS) || [];

@@ -38,6 +38,7 @@ exports.contextMenu = function() {
     switch (e.target.nodeName) {
         case 'TEXTAREA':
         case 'PRE':
+        case 'SPAN':
             e.preventDefault();
             textMenu.popup(remote.getCurrentWindow());
             break;

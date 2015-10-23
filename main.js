@@ -20,7 +20,9 @@ app.on('ready', function() {
   menu = Menu.buildFromTemplate(appMenu);
   Menu.setApplicationMenu(menu);
 
-  mainWindow = new BrowserWindow({width: 1245, height: 800});
+  mainWindow = new BrowserWindow({ width: 1245,
+                                   height: 800,
+                                   'min-width': 864});
 
   mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
 

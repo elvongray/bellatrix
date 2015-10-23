@@ -56,7 +56,7 @@ var Bellatrix = React.createClass({
 
   render: function() {
     var display;
-    // If language is mardown display markdown container
+    // If language is markdown display markdown container
     // else display editor
     if (this.state.language === 'markdown') {
       display = (

@@ -14,6 +14,13 @@ var pythonRepl = empython,
 
 var PythonContainer = React.createClass({
 
+  componentWillReceiveProps: function(nextProps) {
+    // Retrieve code in editor
+    if(this.props.editorText) {
+      this.evaluateCode(nextProps.editorText)
+    }
+  },
+
   componentDidMount: function() {
     this.loadLanguage(this.props.language);
   },
@@ -43,6 +50,12 @@ var PythonContainer = React.createClass({
       // Restart the prompt.
       self.startPrompt();
     });
+  },
+
+  evaluateCode: function(code) {
+    jqconsole.AbortPrompt();
+    pythonRepl.Run(code);
+    this.startPrompt();
   },
 
   clearTerminal: function() {

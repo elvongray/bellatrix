@@ -6,12 +6,44 @@
 */
 var React = require('react');
 
-var pythonRepl = empython;
-console.log(pythonRepl);
+// Note this are initiated from the global
+// window in index.html
+var pythonRepl = empython,
+    jqconsole;
+
 
 var PythonContainer = React.createClass({
 
   componentDidMount: function() {
+    this.loadLanguage(this.props.language);
+  },
+
+  resultOutput: function(value) {
+    console.log("asasa")
+    jqconsole.Write(value + '\n', 'jqconsole-output');
+  },
+
+  loadLanguage: function(language) {
+    pythonRepl.Initialize();
+    // Override default printing
+    pythonRepl.Module.print = pythonRepl.Module.printErr = this.resultOutput;
+    jqconsole = $('#console').jqconsole('python loaded...\n', '>');
+    this.startPrompt();
+  },
+
+  startPrompt: function() {
+    // Start the prompt with history enabled.
+    var self = this;
+    jqconsole.Prompt(true, function (input) {
+      // Output input with the class jqconsole-output.
+      pythonRepl.Run(input);
+      // Restart the prompt.
+      self.startPrompt();
+    });
+  },
+
+  clearTerminal: function() {
+    jqconsole.Clear();
   },
 
   render: function() {

@@ -13,6 +13,8 @@ require('../../css/style.css');
 var TerminalContainer = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
+    // Check whether the language prop has changed
+    // to load the new language
     if(this.props.language !== nextProps.language) {
       $('#console').empty();
       this.loadLanguage(nextProps.language);

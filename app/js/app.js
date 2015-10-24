@@ -66,6 +66,13 @@ var Bellatrix = React.createClass({
         />
       );
     }
+    else if (this.state.language === 'python') {
+      display = (
+        <PythonContainer
+          editorText={this.editorText}
+        />
+      )
+    }
     else {
       display = (
         <TerminalContainer

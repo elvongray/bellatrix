@@ -8,6 +8,7 @@ require('./context_menu').contextMenu();
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
 var MarkdownContainer = require('./components/MarkdownContainer');
+var PythonContainer = require('./components/PythonContainer')
 
 require('../css/style.css');
 

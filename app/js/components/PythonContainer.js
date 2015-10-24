@@ -19,7 +19,6 @@ var PythonContainer = React.createClass({
   },
 
   resultOutput: function(value) {
-    console.log("asasa")
     jqconsole.Write(value + '\n', 'jqconsole-output');
   },
 
@@ -27,7 +26,11 @@ var PythonContainer = React.createClass({
     pythonRepl.Initialize();
     // Override default printing
     pythonRepl.Module.print = pythonRepl.Module.printErr = this.resultOutput;
-    jqconsole = $('#console').jqconsole('python loaded...\n', '>');
+
+
+    jqconsole = $('#console').jqconsole('python ', '>');
+    pythonRepl.Run('import sys; print sys.version')
+
     this.startPrompt();
   },
 

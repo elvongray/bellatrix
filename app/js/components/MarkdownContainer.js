@@ -2,7 +2,7 @@ var React = require('react');
 
 require('../../css/style.css');
 
- var md;
+var md;
 
 var MarkdownConatiner = React.createClass({
 
@@ -21,11 +21,29 @@ var MarkdownConatiner = React.createClass({
   },
 
   componentWillMount: function() {
+    var self = this;
+
+    document.addEventListener('click', self.preventLinksFromOpening, false);
+
     md = markdownit({
       html: true,
       linkify: true,
       typographer: true
     });
+  },
+
+  // Prevent links from trying to open in
+  // electron app.
+  preventLinksFromOpening: function(e) {
+    var href;
+    var isExternal = false;
+
+    var checkDomElement = function (element) {
+      if (element.nodeName === 'A') {
+         e.preventDefault();
+      }
+    }
+    checkDomElement(e.target);
   },
 
   render: function() {

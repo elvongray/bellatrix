@@ -55,7 +55,7 @@ var TextEditorContainer = React.createClass({
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
-            <button className="mdl-button mdl-js-button mdl-button--raised" onClick={this.getEditorText}>
+            <button className="mdl-button mdl-js-button" onClick={this.getEditorText}>
               Run
             </button>
           </div>

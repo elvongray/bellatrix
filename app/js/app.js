@@ -62,23 +62,20 @@ var Bellatrix = React.createClass({
     if (this.state.language === 'markdown') {
       display = (
         <MarkdownContainer
-          editorText={this.state.editorText}
-        />
+          editorText={this.state.editorText}/>
       );
     }
     else if (this.state.language === 'python') {
       display = (
         <PythonContainer
-          editorText={this.state.editorText}
-        />
+          editorText={this.state.editorText}/>
       )
     }
     else {
       display = (
         <TerminalContainer
           language={this.state.language}
-          editorText={this.state.editorText}
-        />
+          editorText={this.state.editorText}/>
       );
     }
     return (

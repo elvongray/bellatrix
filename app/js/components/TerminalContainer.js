@@ -71,7 +71,6 @@ var TerminalContainer = React.createClass({
   },
 
   componentDidMount: function() {
-    var self = this;
     this.loadLanguage(this.props.language);
   },
 
@@ -91,7 +90,7 @@ var TerminalContainer = React.createClass({
   loadLanguage: function(language) {
     var self = this;
     jsrepl.loadLanguage(language, function () {
-      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>', '...');
+      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>>>', '...');
       self.startPrompt();
     });
   },

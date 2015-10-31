@@ -1,8 +1,9 @@
 /*
 * Note: This component will be removed ones
 * The issue with jsrepl is resolved. The
-* terminal conatiner imitated here, this will be changed
-* ones the jsrepl issue is resolved
+* terminal container imitated here, this will be changed
+* ones the jsrepl issue is resolved.
+* Depreciated till version 2.
 */
 var React = require('react');
 

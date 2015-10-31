@@ -8,7 +8,6 @@ require('./context_menu').contextMenu();
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
 var MarkdownContainer = require('./components/MarkdownContainer');
-var PythonContainer = require('./components/PythonContainer')
 
 require('../css/style.css');
 
@@ -64,12 +63,6 @@ var Bellatrix = React.createClass({
         <MarkdownContainer
           editorText={this.state.editorText}/>
       );
-    }
-    else if (this.state.language === 'python') {
-      display = (
-        <PythonContainer
-          editorText={this.state.editorText}/>
-      )
     }
     else {
       display = (

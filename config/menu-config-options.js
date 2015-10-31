@@ -4,9 +4,7 @@
 exports.languages = [
   ["Javascript", "javascript"],
   ["Ruby", "ruby"],
-  ["Python", "python"],
   ["Coffeescript", "coffeescript"],
-  ["Lua", "lua"],
   ["Markdown", "markdown"]
 ];
 

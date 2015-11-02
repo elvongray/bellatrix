@@ -35,8 +35,6 @@ var MarkdownConatiner = React.createClass({
   // Prevent links from trying to open in
   // electron app.
   preventLinksFromOpening: function(e) {
-    var href;
-    var isExternal = false;
 
     var checkDomElement = function (element) {
       if (element.nodeName === 'A') {

@@ -5,6 +5,9 @@ var React = require('react');
 //initialize context menu
 require('./context_menu').contextMenu();
 
+var GeneralActions = require('./actions/GeneralActions');
+var AppStore = require('./stores/AppStore')
+
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
 var MarkdownContainer = require('./components/MarkdownContainer');
@@ -41,17 +44,31 @@ var Bellatrix = React.createClass({
     var self = this;
     ipc.on('change-theme', function(theme) {
       self.changeEditorTheme(theme);
+      GeneralActions.saveCurrentState(self.state);
     });
 
     ipc.on('change-language', function(language) {
       self.changeLanguage(language);
+      GeneralActions.saveCurrentState(self.state);
     });
+
+    // Register method for loading saved state
+    AppStore.addLoadSavedStateListener(this.loadSavedState)
+  },
+
+  componentDidMount: function() {
+    // trigger action to load the saved state
+    GeneralActions.loadSavedState()
   },
 
   getEditorText: function(text) {
     this.setState({
       editorText: text
     });
+  },
+
+  loadSavedState: function(state) {
+    this.setState(state)
   },
 
   render: function() {

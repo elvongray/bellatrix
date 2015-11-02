@@ -6,8 +6,8 @@ var assign = require('object-assign');
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
-  emitLoadSavedState: function() {
-    this.emit('load_saved_state');
+  emitLoadSavedState: function(data) {
+    this.emit('load_saved_state', data);
   },
 
   addLoadSavedStateListener: function(callback) {

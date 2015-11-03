@@ -68,7 +68,7 @@ var Bellatrix = React.createClass({
   },
 
   loadSavedState: function(state) {
-    this.setState(state)
+    this.setState(state);
   },
 
   render: function() {

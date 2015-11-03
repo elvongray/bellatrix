@@ -53,7 +53,7 @@ var TerminalContainer = React.createClass({
     };
 
     var timeoutCallback = function() {
-      console.log("timedout");
+      this.loadLanguage(this.props.language);
       return true
     };
 

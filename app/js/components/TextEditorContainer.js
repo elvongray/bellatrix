@@ -60,12 +60,8 @@ var TextEditorContainer = React.createClass({
             </button>
           </div>
         </header>
-        <main className="mdl-layout__content">
-          <div className="page-content">
-            <pre id="editor">
-            </pre>
-          </div>
-        </main>
+          <pre id="editor">
+          </pre>
       </div>
     )
   }

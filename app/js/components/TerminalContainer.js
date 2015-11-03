@@ -49,7 +49,7 @@ var TerminalContainer = React.createClass({
     };
 
     var progressCallback = function(m, n) {
-      console.log(n);
+
     };
 
     var timeoutCallback = function() {

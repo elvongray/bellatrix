@@ -29,11 +29,17 @@ var TextEditorContainer = React.createClass({
 
   componentDidMount: function() {
     var self = this;
+    ace.require("ace/ext/language_tools");
     aceEditor = ace.edit("editor");
     aceEditor.setTheme("ace/theme/" + this.props.theme);
     aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
-    aceEditor.getSession().setUseWrapMode(true)
+    aceEditor.getSession().setUseWrapMode(true);
+    aceEditor.$blockScrolling = Infinity
+    aceEditor.setOptions({
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true
+    });
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });

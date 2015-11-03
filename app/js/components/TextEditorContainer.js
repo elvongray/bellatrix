@@ -33,6 +33,7 @@ var TextEditorContainer = React.createClass({
     aceEditor.setTheme("ace/theme/" + this.props.theme);
     aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
+    aceEditor.getSession().setUseWrapMode(true)
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });

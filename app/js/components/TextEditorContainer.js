@@ -25,37 +25,24 @@ var TextEditorContainer = React.createClass({
     if (nextProps.language !== this.props.language) {
       this.changeLanguage(nextProps.language);
     }
-
-    this.componentDidMount();
   },
 
   componentDidMount: function() {
     var self = this;
-    ace.require("ace/ext/language_tools");
     aceEditor = ace.edit("editor");
     aceEditor.setTheme("ace/theme/" + this.props.theme);
     aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
     aceEditor.getSession().setUseWrapMode(true);
     aceEditor.$blockScrolling = Infinity;
-
-    if(this.props.language == 'javascript') {
-      this.enableJavascriptIntellisence();
-    }
-    else {
-      aceEditor.setOptions({
-        enableBasicAutocompletion: true,
-        enableLiveAutocompletion: true
-      });
-    }
-    console.log(this.props.language);
+    this.enableLanguageIntellisence();
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });
   },
 
-  // Note: intellisence is currently supported for javascipt only.
-  enableJavascriptIntellisence: function() {
+  // Note: intellisence is currently supported for javascript only.
+  enableLanguageIntellisence: function() {
     var useWebWorker = window.location.search.toLowerCase().indexOf('noworker');
     aceEditor.getSession().setUseWorker(useWebWorker);
 
@@ -77,6 +64,8 @@ var TextEditorContainer = React.createClass({
           },
         },
         enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true
+
       });
     });
   },

@@ -20,14 +20,16 @@ exports.languageMultilineHandler = function(language, command) {
    }
 
   function handleJavascript(command) {
-
-    // if (/[\[\{\(]$/.test(command)) {
-    //   return 1;
-    // }
-    // else {
-    //   return false;
-    // }
-    return false;
+      try {
+        eval(command);
+        return false;
+      } catch (error) {
+        if (/[\[\{\(]$/.test(command)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
   }
 
   function handleRuby(command) {

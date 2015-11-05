@@ -25,6 +25,8 @@ var TextEditorContainer = React.createClass({
     if (nextProps.language !== this.props.language) {
       this.changeLanguage(nextProps.language);
     }
+
+    this.componentDidMount();
   },
 
   componentDidMount: function() {
@@ -35,13 +37,47 @@ var TextEditorContainer = React.createClass({
     aceEditor.session.setMode("ace/mode/" + this.props.language);
     aceEditor.setShowPrintMargin(false);
     aceEditor.getSession().setUseWrapMode(true);
-    aceEditor.$blockScrolling = Infinity
-    aceEditor.setOptions({
+    aceEditor.$blockScrolling = Infinity;
+
+    if(this.props.language == 'javascript') {
+      this.enableJavascriptIntellisence();
+    }
+    else {
+      aceEditor.setOptions({
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true
-    });
+      });
+    }
+    console.log(this.props.language);
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
+    });
+  },
+
+  // Note: intellisence is currently supported for javascipt only.
+  enableJavascriptIntellisence: function() {
+    var useWebWorker = window.location.search.toLowerCase().indexOf('noworker');
+    aceEditor.getSession().setUseWorker(useWebWorker);
+
+    ace.config.loadModule('ace/ext/tern', function () {
+      aceEditor.setOptions({
+        enableTern: {
+          defs: ['browser', 'ecma5'],
+          plugins: {
+            doc_comment: {
+                fullDocs: true
+            }
+          },
+          useWorker: useWebWorker,
+          switchToDoc: function (name, start) {
+            console.log('switchToDoc called but not defined. name=' + name + '; start=', start);
+          },
+          startedCb: function () {
+            console.log('editor.ternServer:', aceEditor.ternServer);
+          },
+        },
+        enableBasicAutocompletion: true,
+      });
     });
   },
 

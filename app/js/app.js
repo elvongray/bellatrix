@@ -6,7 +6,7 @@ var React = require('react');
 require('./context_menu').contextMenu();
 
 var GeneralActions = require('./actions/GeneralActions');
-var AppStore = require('./stores/AppStore')
+var AppStore = require('./stores/AppStore');
 
 var TextEditorContainer = require('./components/TextEditorContainer');
 var TerminalContainer = require('./components/TerminalContainer');
@@ -53,7 +53,7 @@ var Bellatrix = React.createClass({
     });
 
     // Register method for loading saved state
-    AppStore.addLoadSavedStateListener(this.loadSavedState)
+    AppStore.addLoadSavedStateListener(this.loadSavedState);
   },
 
   componentDidMount: function() {
@@ -94,8 +94,7 @@ var Bellatrix = React.createClass({
           <TextEditorContainer
             theme={this.state.theme}
             language={this.state.language}
-            getEditorText={this.getEditorText}
-          />
+            getEditorText={this.getEditorText}/>
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
           {display}

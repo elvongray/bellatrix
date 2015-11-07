@@ -70,6 +70,23 @@ var TerminalContainer = React.createClass({
     });
   },
 
+  registerShortcuts: function() {
+    // Ctrl+A: Move terminal to the start.
+    jqconsole.RegisterShortcut('A', function() {
+      this.MoveToStart();
+    });
+
+    // Ctrl+E: Move terminal to the end.
+    jqconsole.RegisterShortcut('E', function() {
+      this.MoveToEnd();
+    });
+
+    // Ctrl+K: Clear terminal.
+    jqconsole.RegisterShortcut('K', function() {
+      this.Clear();
+    });
+  },
+
   componentDidMount: function() {
     this.loadLanguage(this.props.language);
   },
@@ -89,6 +106,7 @@ var TerminalContainer = React.createClass({
     var self = this;
     jsrepl.loadLanguage(language, function () {
       jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>>>', '...');
+      self.registerShortcuts();
       self.startPrompt();
     });
   },

@@ -1,6 +1,7 @@
 /*
 * This file will contain the languages config for handling
 * multiline input in the terminal for base languages
+* Note: this module is depreciated for jsrepl handler
 */
 
 exports.languageMultilineHandler = function(language, command) {

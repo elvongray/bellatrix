@@ -63,9 +63,7 @@ var TextEditorContainer = React.createClass({
             console.log('editor.ternServer:', aceEditor.ternServer);
           },
         },
-        enableBasicAutocompletion: true,
-        enableLiveAutocompletion: true
-
+        enableBasicAutocompletion: true
       });
     });
   },

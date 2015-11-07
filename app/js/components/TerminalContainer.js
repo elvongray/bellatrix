@@ -64,7 +64,7 @@ var TerminalContainer = React.createClass({
       error: errorCallback,
       progress: progressCallback,
       timeout: {
-        time: 30000,
+        time: 12000,
         callback: timeoutCallback
       }
     });
@@ -82,9 +82,7 @@ var TerminalContainer = React.createClass({
       jsrepl.eval(input)
       // Restart the prompt.
       self.startPrompt();
-    }, function(command) {
-      return languageMultilineHandler(self.props.language, command);
-    });
+    }, jsrepl.checkLineEnd, true);
   },
 
   loadLanguage: function(language) {

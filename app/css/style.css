@@ -74,10 +74,6 @@ body {
   display: block;
 }
 
-.ace-content  {
-  margin-top: 0px !important;
-}
-
 #editor {
   position: fixed;
   margin-top: 0px;
@@ -217,7 +213,7 @@ hr {
 
 pre, code{
   font-family:Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.94em; /* 0.94 = 0.88 + (1.00 - 0.88) / 2 */
+  font-size: 0.94em;
   border-radius:3px;
   border: 1px solid #CCC;
   background-color: #F8F8F8;

@@ -190,11 +190,19 @@ h6{
   font-size:0.9em;
 }
 
-blockquote {
+.markdown-body blockquote {
   color: #666666;
   margin: 0;
   padding-left: 3em;
   border-left: 0.5em #EEE solid;
+}
+
+.markdown-body blockquote:before {
+  content: '';
+}
+
+.markdown-body blockquote:after {
+  content: '';
 }
 
 hr {

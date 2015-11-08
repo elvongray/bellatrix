@@ -22,7 +22,7 @@ exports.languageSpec = function(language) {
 
   function handleJavascript() {
     return "Native Chrome JavaScript.\n" +
-            "Copyright (c) 2013 Google Inc"
+            "Copyright (c) 2015 Google Inc"
   }
 
   function handleRuby() {

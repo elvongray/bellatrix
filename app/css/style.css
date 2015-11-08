@@ -70,12 +70,8 @@ body {
   height: 100%;
 }
 
-.ace_line {
-  display: block;
-}
-
 #editor {
-  position: fixed;
+  position: relative;
   margin-top: 0px;
   margin-bottom: 0px;
   width: 49%;

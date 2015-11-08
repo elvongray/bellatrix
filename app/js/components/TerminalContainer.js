@@ -1,7 +1,9 @@
 var React = require('react');
 
-var languageMultilineHandler = require('../lang_config/multiline-handler')
-                                .languageMultilineHandler;
+// var languageMultilineHandler = require('../lang_config/multiline-handler')
+//                                 .languageMultilineHandler;
+
+var languageSpec = require('../lang_config/language').languageSpec;
 
 // Note: jqconsole and jsrepl loaded in
 // the index.html
@@ -105,7 +107,7 @@ var TerminalContainer = React.createClass({
   loadLanguage: function(language) {
     var self = this;
     jsrepl.loadLanguage(language, function () {
-      jqconsole = $('#console').jqconsole(language + ' loaded...\n', '>>>', '...');
+      jqconsole = $('#console').jqconsole(languageSpec(language) + '\n', '>>>', '...');
       self.registerShortcuts();
       self.startPrompt();
     });

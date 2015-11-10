@@ -14,6 +14,11 @@ body {
   height: 100%;
 }
 
+.text-editor-container {
+  position: fixed;
+  overflow: hidden;
+}
+
 .text-editor-header {
   width: 50%;
   height: 50px;
@@ -74,7 +79,7 @@ body {
   position: relative;
   margin-top: 0px;
   margin-bottom: 0px;
-  width: 49%;
+  width: 50%;
   height: 100%;
 }
 
@@ -215,14 +220,14 @@ hr {
   padding: 0;
 }
 
-pre, code{
+.markdown-body pre, code {
   font-family:Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.94em;
   border-radius:3px;
   border: 1px solid #CCC;
   background-color: #F8F8F8;
 }
-pre {
+.markdown-body pre {
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;

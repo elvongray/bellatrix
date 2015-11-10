@@ -81,7 +81,7 @@ var TextEditorContainer = React.createClass({
   render: function() {
 
     return (
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
@@ -90,8 +90,8 @@ var TextEditorContainer = React.createClass({
             </button>
           </div>
         </header>
-          <pre id="editor">
-          </pre>
+        <pre id="editor">
+        </pre>
       </div>
     )
   }

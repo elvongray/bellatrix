@@ -20,7 +20,8 @@ var Bellatrix = React.createClass({
     return  {
       theme: 'twilight',
       language: 'javascript',
-      editorText: ''
+      editorText: '',
+      savedText: ''
     }
   },
 
@@ -54,6 +55,9 @@ var Bellatrix = React.createClass({
 
     // Register method for loading saved state
     AppStore.addLoadSavedStateListener(this.loadSavedState);
+
+    // Register method for loading saved text
+    AppStore.addLoadSavedTextListener(this.loadSavedText)
   },
 
   componentDidMount: function() {
@@ -76,8 +80,16 @@ var Bellatrix = React.createClass({
     this.setState(state);
   },
 
+  loadSavedText: function(text) {
+    console.log(text);
+    // this.setState({
+    //   savedText: text
+    // });
+  },
+
   render: function() {
     var display;
+    GeneralActions.loadSavedEditorText(this.state.language);
     // If language is markdown display markdown container
     // else display editor
     if (this.state.language === 'markdown') {
@@ -100,7 +112,8 @@ var Bellatrix = React.createClass({
             theme={this.state.theme}
             language={this.state.language}
             getEditorText={this.getEditorText}
-            saveEditorText={this.saveEditorText}/>
+            saveEditorText={this.saveEditorText}
+            savedText={this.state.savedText}/>
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
           {display}

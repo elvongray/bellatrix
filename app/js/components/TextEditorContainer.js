@@ -83,7 +83,6 @@ var TextEditorContainer = React.createClass({
   },
 
   render: function() {
-    console.log(localStorage);
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">

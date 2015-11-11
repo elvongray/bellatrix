@@ -72,6 +72,10 @@ var TextEditorContainer = React.createClass({
     this.props.getEditorText(aceEditor.getValue());
   },
 
+  saveEditorText: function() {
+    this.props.saveEditorText(aceEditor.getValue(), this.props.language)
+  },
+
   handleEditorChange: function(event) {
     if(this.props.language === "markdown") {
       this.props.getEditorText(aceEditor.getValue());
@@ -79,12 +83,15 @@ var TextEditorContainer = React.createClass({
   },
 
   render: function() {
-
+    console.log(localStorage);
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
+            <button className="mdl-button mdl-js-button" onClick={this.saveEditorText}>
+              save
+            </button>
             <button className="mdl-button mdl-js-button" onClick={this.getEditorText}>
               Run
             </button>

@@ -67,6 +67,11 @@ var Bellatrix = React.createClass({
     });
   },
 
+  saveEditorText: function(text, language) {
+    // Trigger action to save the text in the editor
+    GeneralActions.saveEditorText(text, language);
+  },
+
   loadSavedState: function(state) {
     this.setState(state);
   },
@@ -94,7 +99,8 @@ var Bellatrix = React.createClass({
           <TextEditorContainer
             theme={this.state.theme}
             language={this.state.language}
-            getEditorText={this.getEditorText}/>
+            getEditorText={this.getEditorText}
+            saveEditorText={this.saveEditorText}/>
         </div>
         <div className="mdl-cell mdl-cell--6-col terminal">
           {display}

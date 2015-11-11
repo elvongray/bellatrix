@@ -25,6 +25,10 @@ var GeneralActions = {
         console.log("Error writing into file");
       }
     });
+  },
+
+  saveEditorText: function(text, language) {
+    localStorage.setItem(language, text);
   }
 }
 

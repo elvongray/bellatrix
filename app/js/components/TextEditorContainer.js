@@ -41,6 +41,10 @@ var TextEditorContainer = React.createClass({
     });
   },
 
+  componentWillUpdate: function() {
+    aceEditor.setValue(this.props.savedText);
+  },
+
   // Note: intellisence is currently supported for javascript only.
   enableLanguageIntellisence: function() {
     var useWebWorker = window.location.search.toLowerCase().indexOf('noworker');

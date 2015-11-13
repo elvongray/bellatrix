@@ -1,3 +1,4 @@
 node_modules
 npm-debug.log
 current_state.json
+app/js/stores/javascript.txt

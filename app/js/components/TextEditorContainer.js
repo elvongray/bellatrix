@@ -1,5 +1,8 @@
 var React =  require('react');
 
+var GeneralActions = require('../actions/GeneralActions');
+var AppStore = require('../stores/AppStore');
+
 //initialize ace editor
 var aceEditor;
 
@@ -25,6 +28,19 @@ var TextEditorContainer = React.createClass({
     if (nextProps.language !== this.props.language) {
       this.changeLanguage(nextProps.language);
     }
+
+    // Load saved text when a prop change is detected
+    if (nextProps.language){
+      GeneralActions.loadSavedEditorText(nextProps.language);
+    }
+    else {
+      GeneralActions.loadSavedEditorText(this.props.language);
+    }
+  },
+
+  componentWillMount: function() {
+    // Add listener to load saved text
+    AppStore.addLoadSavedTextListener(this.loadSavedText);
   },
 
   componentDidMount: function() {
@@ -39,10 +55,6 @@ var TextEditorContainer = React.createClass({
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });
-  },
-
-  componentWillUpdate: function() {
-    aceEditor.setValue(this.props.savedText);
   },
 
   // Note: intellisence is currently supported for javascript only.
@@ -76,8 +88,12 @@ var TextEditorContainer = React.createClass({
     this.props.getEditorText(aceEditor.getValue());
   },
 
+  loadSavedText: function(text) {
+    aceEditor.setValue(text)
+  },
+
   saveEditorText: function() {
-    this.props.saveEditorText(aceEditor.getValue(), this.props.language)
+    GeneralActions.saveEditorText(aceEditor.getValue(), this.props.language)
   },
 
   handleEditorChange: function(event) {

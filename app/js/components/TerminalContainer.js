@@ -23,7 +23,7 @@ var TerminalContainer = React.createClass({
     }
 
     // Retrieve code in editor
-    if(this.props.editorText) {
+    if(nextProps.editorText) {
       this.evaluateCode(nextProps.editorText)
     }
   },

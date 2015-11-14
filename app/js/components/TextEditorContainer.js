@@ -32,11 +32,8 @@ var TextEditorContainer = React.createClass({
     }
 
     // Load saved text when a prop change is detected
-    if (nextProps.language){
+    if (nextProps.language !== this.props.language){
       GeneralActions.loadSavedEditorText(nextProps.language);
-    }
-    else {
-      GeneralActions.loadSavedEditorText(this.props.language);
     }
   },
 
@@ -70,6 +67,7 @@ var TextEditorContainer = React.createClass({
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });
+    GeneralActions.loadSavedEditorText(this.props.language);
   },
 
   // Note: intellisence is currently supported for javascript only.

@@ -35,7 +35,6 @@ exports.contextMenu = function() {
   textMenu.append(paste);
 
   document.addEventListener('contextmenu', function(e) {
-    console.log(e.target.nodeName);
     switch (e.target.nodeName) {
         case 'TEXTAREA':
         case 'PRE':

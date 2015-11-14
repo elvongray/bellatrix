@@ -46,8 +46,14 @@ var TextEditorContainer = React.createClass({
     // Add listener to load saved text
     AppStore.addLoadSavedTextListener(this.loadSavedText);
 
+    // Listener for saving the editor text
     ipc.on('save-text', function() {
       self.saveEditorText()
+    });
+
+    // Listener for executing the code in the editor
+    ipc.on('run', function() {
+      self.getEditorText()
     });
   },
 

@@ -39,6 +39,13 @@ var template = [
     label: 'Edit',
     submenu: [
       {
+        label: 'Run',
+        accelerator: 'CmdOrCtrl+B',
+        click: function(item, browserWindow) {
+          browserWindow.webContents.send('run');
+        }
+      },
+      {
         label: 'Save',
         accelerator: 'CmdOrCtrl+S',
         click: function(item, browserWindow) {

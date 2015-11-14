@@ -1,3 +1,5 @@
+var ipc = window.require('ipc');
+
 var React =  require('react');
 
 var GeneralActions = require('../actions/GeneralActions');
@@ -39,11 +41,18 @@ var TextEditorContainer = React.createClass({
   },
 
   componentWillMount: function() {
+    var self = this;
+
     // Add listener to load saved text
     AppStore.addLoadSavedTextListener(this.loadSavedText);
+
+    ipc.on('save-text', function() {
+      self.saveEditorText()
+    });
   },
 
   componentDidMount: function() {
+    // Set up ace editor
     var self = this;
     aceEditor = ace.edit("editor");
     aceEditor.setTheme("ace/theme/" + this.props.theme);
@@ -109,7 +118,7 @@ var TextEditorContainer = React.createClass({
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
             <button className="mdl-button mdl-js-button" onClick={this.saveEditorText}>
-              save
+              Save
             </button>
             <button className="mdl-button mdl-js-button" onClick={this.getEditorText}>
               Run

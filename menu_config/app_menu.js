@@ -39,6 +39,13 @@ var template = [
     label: 'Edit',
     submenu: [
       {
+        label: 'Save',
+        accelerator: 'CmdOrCtrl+S',
+        click: function(item, browserWindow) {
+          browserWindow.webContents.send('save-text');
+        }
+      },
+      {
         label: 'Undo',
         accelerator: 'CmdOrCtrl+Z',
         selector: 'undo:'

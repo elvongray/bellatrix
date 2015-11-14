@@ -3,7 +3,7 @@ var ipc = require('ipc');
 var Menu = require('menu');
 var BrowserWindow = require('browser-window');
 
-var appMenu = require('./config/app_menu');
+var appMenu = require('./menu_config/app_menu');
 
 require('crash-reporter').start();
 

@@ -21,13 +21,36 @@ body {
 
 .text-editor-header {
   width: 50%;
-  height: 20px;
+  min-height: 20px;
   color: black;
   background-color: whitesmoke !important;
 }
 
+.text-editor-header .mdl-layout__header-row {
+  height: 25px;
+}
+
+.text-editor-header
+.mdl-layout__header-row
+.mdl-layout-title {
+  font-size: 14px;
+}
+
+.text-editor-button {
+  height: 20px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 20px;
+}
+
 .markdown-header {
+  min-height: 20px;
   background-color: whitesmoke !important;
+}
+
+.markdown-header .mdl-layout__header-row {
+  font-weight: 20px;
+  height: 25px;
 }
 
 .markdown-body {

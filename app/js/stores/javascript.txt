@@ -1,5 +1,0 @@
-function crap() {
-  console.log("crap");
-}
-
-crap();

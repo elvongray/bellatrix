@@ -35,6 +35,14 @@ var TextEditorContainer = React.createClass({
     if (nextProps.language !== this.props.language){
       GeneralActions.loadSavedEditorText(nextProps.language);
     }
+
+    // Hide the run button if language is markdown
+    if(nextProps.language === 'markdown') {
+      this.refs.runButton.getDOMNode().classList.add('hide');
+    }
+    else {
+      this.refs.runButton.getDOMNode().classList.remove('hide');
+    }
   },
 
   componentWillMount: function() {
@@ -81,7 +89,7 @@ var TextEditorContainer = React.createClass({
           defs: ['browser', 'ecma5'],
           plugins: {
             doc_comment: {
-                fullDocs: true
+              fullDocs: true
             }
           },
           useWorker: useWebWorker,
@@ -116,6 +124,9 @@ var TextEditorContainer = React.createClass({
   },
 
   render: function() {
+    if(this.props.language === 'markdown') {
+      document.getElement
+    }
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
@@ -124,7 +135,10 @@ var TextEditorContainer = React.createClass({
             <button className="mdl-button mdl-js-button text-editor-button" onClick={this.saveEditorText}>
               Save
             </button>
-            <button className="mdl-button mdl-js-button text-editor-button" onClick={this.getEditorText}>
+            <button
+              className="mdl-button mdl-js-button text-editor-button"
+              onClick={this.getEditorText}
+              ref="runButton">
               Run
             </button>
           </div>

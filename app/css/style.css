@@ -2,6 +2,10 @@ body {
   overflow: hidden;
 }
 
+.hide {
+  display: none;
+}
+
 .text-editor {
   height: 0;
   padding-bottom: 100%;
@@ -24,7 +28,7 @@ body {
   width: 100%;
   min-height: 20px;
   color: black;
-  background-color: whitesmoke !important;
+  background-color: #E0E0E0 !important;
 }
 
 .text-editor-header .mdl-layout__header-row {

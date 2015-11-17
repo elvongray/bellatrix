@@ -11,6 +11,7 @@ var jqconsole,
     jsrepl;
 
 require('../../css/style.css');
+require('../../css/terminal.css');
 
 var TerminalContainer = React.createClass({
 

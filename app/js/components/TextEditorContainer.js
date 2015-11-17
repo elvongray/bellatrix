@@ -9,6 +9,7 @@ var AppStore = require('../stores/AppStore');
 var aceEditor;
 
 require('../../css/style.css');
+require('../../css/editor.css');
 
 var TextEditorContainer = React.createClass({
 
@@ -75,6 +76,7 @@ var TextEditorContainer = React.createClass({
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });
+    // Trigger event to load saved editor text
     GeneralActions.loadSavedEditorText(this.props.language);
   },
 

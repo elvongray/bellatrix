@@ -1,6 +1,7 @@
 var React = require('react');
 
 require('../../css/style.css');
+require('../../css/markdown.css');
 
 var md;
 
@@ -32,7 +33,7 @@ var MarkdownConatiner = React.createClass({
     });
   },
 
-  // Prevent links from trying to open in
+  // Prevent links from opening in
   // electron app.
   preventLinksFromOpening: function(e) {
 

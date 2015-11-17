@@ -7,9 +7,24 @@
 
 .terminal-header {
   width: 100%;
-  height: 50px;
-  background-color: black !important;
+  min-height: 20px;
+  background-color: #141414 !important;
   color: white;
+}
+
+.terminal-header .mdl-layout__header-row {
+  height: 25px;
+}
+
+.terminal-header
+.mdl-layout__header-row
+.terminal-editor-button {
+  color: white;
+  height: 20px;
+  font-size: 10px;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 auto;
 }
 
 /* The console container element */
@@ -17,7 +32,11 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #141414;
+}
+
+.icon {
+  margin-left: 2px;
 }
 
 /* The inner console element. */

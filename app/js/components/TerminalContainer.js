@@ -130,7 +130,10 @@ var TerminalContainer = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header terminal-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title" onClick={this.clearTerminal}>clear</span>
+            <button className="mdl-button mdl-js-button terminal-editor-button" onClick={this.clearTerminal}>
+              clear
+              <i className="fa fa-eraser icon"></i>
+            </button>
           </div>
         </header>
         <div id="console">

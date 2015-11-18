@@ -2,6 +2,15 @@ body {
   overflow: hidden;
 }
 
+.footer {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  height: 20px !important;
+  color: black;
+  background-color: #E0E0E0 !important;
+}
+
 .hide {
   display: none;
 }

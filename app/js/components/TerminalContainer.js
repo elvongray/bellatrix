@@ -138,6 +138,11 @@ var TerminalContainer = React.createClass({
         </header>
         <div id="console">
         </div>
+        <footer className="mdl-mini-footer mdl-cell mdl-cell--12-col footer">
+          <div className="mdl-mini-footer__left-section">
+
+          </div>
+        </footer>
       </div>
     )
   }

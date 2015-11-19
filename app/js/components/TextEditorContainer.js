@@ -167,11 +167,13 @@ var TextEditorContainer = React.createClass({
         </header>
         <pre id="editor">
         </pre>
-        <footer className="mdl-mini-footer mdl-cell mdl-cell--12-col footer">
+        <footer className="footer">
+          <div className="save-indicator"></div>
           <div className="cursor-position">
             <span>Line {this.state.cursorPosition.row + 1}, </span>
             <span>Column {this.state.cursorPosition.column + 1}</span>
           </div>
+          <div className="editor-theme">Theme: {this.props.theme}</div>
         </footer>
       </div>
     )

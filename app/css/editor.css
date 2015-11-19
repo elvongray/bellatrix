@@ -48,4 +48,23 @@
 .cursor-position {
   font-size: 12px;
   color: #757575;
+  float: left;
+  margin-left: 15px;
+}
+
+.save-indicator {
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background: red;
+  float: left;
+}
+
+.editor-theme {
+  color: #757575;
+  font-size: 12px;
+  margin-right: 10px;
+  float: right;
 }

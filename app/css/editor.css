@@ -44,3 +44,8 @@
 .icon {
   margin-left: 2px;
 }
+
+.cursor-position {
+  font-size: 12px;
+  color: #757575;
+}

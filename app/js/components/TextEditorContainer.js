@@ -13,6 +13,12 @@ require('../../css/editor.css');
 
 var TextEditorContainer = React.createClass({
 
+  getInitialState: function() {
+    return {
+      cursorPosition: {row: 0, column: 0}
+    }
+  },
+
   changeTheme: function(theme) {
     aceEditor.setTheme("ace/theme/" + theme);
   },
@@ -64,6 +70,12 @@ var TextEditorContainer = React.createClass({
   },
 
   componentDidMount: function() {
+    this.setUpAceEditor();
+    // Trigger event to load saved editor text
+    GeneralActions.loadSavedEditorText(this.props.language);
+  },
+
+  setUpAceEditor: function() {
     // Set up ace editor
     var self = this;
     aceEditor = ace.edit("editor");
@@ -72,12 +84,18 @@ var TextEditorContainer = React.createClass({
     aceEditor.setShowPrintMargin(false);
     aceEditor.getSession().setUseWrapMode(true);
     aceEditor.$blockScrolling = Infinity;
+
     this.enableLanguageIntellisence();
+
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
     });
-    // Trigger event to load saved editor text
-    GeneralActions.loadSavedEditorText(this.props.language);
+
+    aceEditor.selection.on("changeCursor", function() {
+      this.setState({
+        cursorPosition: aceEditor.getCursorPosition()
+      })
+    }.bind(this));
   },
 
   // Note: intellisence is currently supported for javascript only.
@@ -150,8 +168,9 @@ var TextEditorContainer = React.createClass({
         <pre id="editor">
         </pre>
         <footer className="mdl-mini-footer mdl-cell mdl-cell--12-col footer">
-          <div className="mdl-mini-footer__left-section">
-
+          <div className="cursor-position">
+            <span>Line {this.state.cursorPosition.row + 1}, </span>
+            <span>Column {this.state.cursorPosition.column + 1}</span>
           </div>
         </footer>
       </div>

@@ -15,7 +15,8 @@ var TextEditorContainer = React.createClass({
 
   getInitialState: function() {
     return {
-      cursorPosition: {row: 0, column: 0}
+      cursorPosition: {row: 0, column: 0},
+      saved: true
     }
   },
 
@@ -89,6 +90,8 @@ var TextEditorContainer = React.createClass({
 
     aceEditor.getSession().on('change', function(e) {
       self.handleEditorChange(e);
+
+      self.toogleUnSaveIndicator();
     });
 
     aceEditor.selection.on("changeCursor", function() {
@@ -125,6 +128,18 @@ var TextEditorContainer = React.createClass({
     });
   },
 
+  toogleSaveIndicator: function() {
+      this.setState({
+        saved: true
+      });
+  },
+
+  toogleUnSaveIndicator: function() {
+      this.setState({
+        saved: false
+      });
+  },
+
   getEditorText: function() {
     this.props.getEditorText(aceEditor.getValue());
   },
@@ -134,6 +149,7 @@ var TextEditorContainer = React.createClass({
   },
 
   saveEditorText: function() {
+    this.toogleSaveIndicator();
     GeneralActions.saveEditorText(aceEditor.getValue(), this.props.language)
   },
 
@@ -144,9 +160,8 @@ var TextEditorContainer = React.createClass({
   },
 
   render: function() {
-    if(this.props.language === 'markdown') {
-      document.getElement
-    }
+    var color = this.state.saved ? "green" : "red"
+
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
@@ -168,7 +183,7 @@ var TextEditorContainer = React.createClass({
         <pre id="editor">
         </pre>
         <footer className="footer">
-          <div className="save-indicator"></div>
+          <div className={"save-indicator " + color} ></div>
           <div className="cursor-position">
             <span>Line {this.state.cursorPosition.row + 1}, </span>
             <span>Column {this.state.cursorPosition.column + 1}</span>

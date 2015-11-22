@@ -95,10 +95,10 @@ var TextEditorContainer = React.createClass({
     });
 
     aceEditor.selection.on("changeCursor", function() {
-      this.setState({
+      self.setState({
         cursorPosition: aceEditor.getCursorPosition()
       })
-    }.bind(this));
+    };
   },
 
   // Note: intellisence is currently supported for javascript only.
@@ -129,15 +129,15 @@ var TextEditorContainer = React.createClass({
   },
 
   toogleSaveIndicator: function() {
-      this.setState({
-        saved: true
-      });
+    this.setState({
+      saved: true
+    });
   },
 
   toogleUnSaveIndicator: function() {
-      this.setState({
-        saved: false
-      });
+    this.setState({
+      saved: false
+    });
   },
 
   getEditorText: function() {

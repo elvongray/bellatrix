@@ -8,7 +8,6 @@ var AppStore = require('../stores/AppStore');
 //initialize ace editor
 var aceEditor;
 
-require('../../css/style.css');
 require('../../css/editor.css');
 
 var TextEditorContainer = React.createClass({
@@ -98,7 +97,7 @@ var TextEditorContainer = React.createClass({
       self.setState({
         cursorPosition: aceEditor.getCursorPosition()
       })
-    };
+    });
   },
 
   // Note: intellisence is currently supported for javascript only.

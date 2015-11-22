@@ -1,5 +1,5 @@
 /**
-* Note: this module contins infor about the currently speciied language.
+* Note: this module contains infor about the currently speciied language.
 * The current implementation hard codes the version of the language been used,
 * this will change in later implemetations.
 */

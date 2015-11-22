@@ -10,16 +10,22 @@ var languageSpec = require('../lang_config/language').languageSpec;
 var jqconsole,
     jsrepl;
 
-require('../../css/style.css');
 require('../../css/terminal.css');
 
 var TerminalContainer = React.createClass({
+
+  getInitialState: function() {
+    return {
+      showSpinner: true
+    }
+  },
 
   componentWillReceiveProps: function(nextProps) {
     // Check whether the language prop has changed
     // to load the new language
     if(this.props.language !== nextProps.language) {
       $('#console').empty();
+      this.toggleSpinner()
       this.loadLanguage(nextProps.language);
     }
 
@@ -108,6 +114,7 @@ var TerminalContainer = React.createClass({
   loadLanguage: function(language) {
     var self = this;
     jsrepl.loadLanguage(language, function () {
+      self.toggleSpinner()
       jqconsole = $('#console').jqconsole(languageSpec(language) + '\n', '>>>', '...');
       self.registerShortcuts();
       self.startPrompt();
@@ -124,7 +131,20 @@ var TerminalContainer = React.createClass({
     jqconsole.Clear();
   },
 
+  toggleSpinner: function() {
+    if (this.state.showSpinner) {
+      this.setState({
+        showSpinner: false
+      });
+      return;
+    }
+    this.setState({
+        showSpinner: true
+    });
+  },
+
   render: function() {
+    var showSpinner = this.state.showSpinner ? '' : 'none'
 
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -136,11 +156,13 @@ var TerminalContainer = React.createClass({
             </button>
           </div>
         </header>
+        <div className={"load8"} style={{display: showSpinner}}>
+          <div className="loader">Loading...</div>
+        </div>
         <div id="console">
         </div>
         <footer className="mdl-mini-footer mdl-cell mdl-cell--12-col footer">
           <div className="mdl-mini-footer__left-section">
-
           </div>
         </footer>
       </div>

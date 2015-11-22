@@ -1,6 +1,5 @@
 var React = require('react');
 
-require('../../css/style.css');
 require('../../css/markdown.css');
 
 var md;

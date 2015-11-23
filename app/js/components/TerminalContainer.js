@@ -23,14 +23,14 @@ var TerminalContainer = React.createClass({
   componentWillReceiveProps: function(nextProps) {
     // Check whether the language prop has changed
     // to load the new language
-    if(this.props.language !== nextProps.language) {
+    if (this.props.language !== nextProps.language) {
       $('#console').empty();
       this.toggleSpinner()
       this.loadLanguage(nextProps.language);
     }
 
     // Retrieve code in editor
-    if(nextProps.editorText) {
+    if (nextProps.editorText) {
       this.evaluateCode(nextProps.editorText)
     }
   },
@@ -48,13 +48,13 @@ var TerminalContainer = React.createClass({
     };
 
     var resultCallback = function(string) {
-      if(string) {
+      if (string) {
         jqconsole.Write("=>" + string + '\n', 'jqconsole-output');
       }
     };
 
     var errorCallback = function(string) {
-      jqconsole.Write(string + '\n', 'jqconsole-output');
+      jqconsole.Write(string + '\n', 'jqconsole-error');
     };
 
     var progressCallback = function(m, n) {

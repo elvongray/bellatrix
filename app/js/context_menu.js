@@ -29,12 +29,21 @@ exports.contextMenu = function() {
     }
   });
 
+  var selectAll = new MenuItem({
+    label: "Select All",
+    accelerator: 'CmdOrCtrl+A',
+    click: function () {
+      document.execCommand("selectAll");
+    }
+  });
+
   var textMenu = new Menu();
   textMenu.append(cut);
   textMenu.append(copy);
   textMenu.append(paste);
+  textMenu.append(selectAll);
 
-  document.addEventListener('contextmenu', function(e) {
+  window.addEventListener('contextmenu', function(e) {
     switch (e.target.nodeName) {
         case 'TEXTAREA':
         case 'PRE':

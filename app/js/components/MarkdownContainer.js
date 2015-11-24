@@ -50,7 +50,6 @@ var MarkdownConatiner = React.createClass({
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header markdown-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title" ></span>
           </div>
         </header>
         <div className="markdown-body"

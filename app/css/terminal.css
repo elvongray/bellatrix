@@ -1,5 +1,5 @@
 .terminal {
-  position: absolute;
+  position: fixed;
   width: 50%;
   height: 100%;
   border-left: 1px solid #424242;

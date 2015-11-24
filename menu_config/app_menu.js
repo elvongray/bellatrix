@@ -115,19 +115,6 @@ var template = [
             focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
         }
       },
-      {
-        label: 'Toggle Developer Tools',
-        accelerator: (function() {
-          if (process.platform == 'darwin')
-            return 'Alt+Command+I';
-          else
-            return 'Ctrl+Shift+I';
-        })(),
-        click: function(item, focusedWindow) {
-          if (focusedWindow)
-            focusedWindow.toggleDevTools();
-        }
-      },
     ]
   },
   {
@@ -156,7 +143,7 @@ var template = [
     submenu: [
       {
         label: 'Learn More',
-        click: function() { require('shell').openExternal('http://electron.atom.io') }
+        click: function() { require('shell').openExternal('https://github.com/andela-earinde') }
       },
     ]
   },
@@ -214,6 +201,25 @@ if (process.platform == 'darwin') {
     {
       label: 'Bring All to Front',
       selector: 'front:'
+    }
+  );
+}
+
+// Add  developer tool only during development
+if (process.env.NODE_ENV == 'development') {
+  template[2].submenu.push(
+    {
+      label: 'Toggle Developer Tools',
+      accelerator: (function() {
+        if (process.platform == 'darwin')
+          return 'Alt+Command+I';
+        else
+          return 'Ctrl+Shift+I';
+      })(),
+      click: function(item, focusedWindow) {
+        if (focusedWindow)
+          focusedWindow.toggleDevTools();
+      }
     }
   );
 }

@@ -24,6 +24,7 @@
 .mdl-layout__header-row
 .mdl-layout-title {
   font-size: 14px;
+  text-transform: uppercase;
 }
 
 .text-editor-button {
@@ -34,7 +35,12 @@
   color: #E0E0E0;
   border: 1px #616161 solid;
   border-radius: 3px;
-  margin: 3px;
+  margin-left: 20px;
+}
+
+.run-button {
+  background-color: #51b9b0;
+  border: 0px;
 }
 
 #editor {

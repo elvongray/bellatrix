@@ -170,7 +170,7 @@ var TextEditorContainer = React.createClass({
               Save
             </button>
             <button
-              className="mdl-button mdl-js-button text-editor-button"
+              className="mdl-button mdl-js-button text-editor-button run-button"
               onClick={this.getEditorText}
               ref="runButton">
               Run

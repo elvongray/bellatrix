@@ -12,8 +12,8 @@
 .text-editor-header {
   width: 100%;
   min-height: 20px;
-  color: black;
-  background-color: #E0E0E0 !important;
+  color: #E0E0E0;
+  background-color: #22282E !important;
 }
 
 .text-editor-header .mdl-layout__header-row {
@@ -31,6 +31,10 @@
   font-size: 10px;
   text-align: center;
   line-height: 20px;
+  color: #E0E0E0;
+  border: 1px #616161 solid;
+  border-radius: 3px;
+  margin: 3px;
 }
 
 #editor {
@@ -43,7 +47,7 @@
 }
 
 .icon {
-  margin-left: 2px;
+  margin-left: 6px;
 }
 
 .cursor-position {

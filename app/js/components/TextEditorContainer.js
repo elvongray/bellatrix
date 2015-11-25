@@ -168,7 +168,6 @@ var TextEditorContainer = React.createClass({
             <span className="mdl-layout-title" >{this.props.language}</span>
             <button className="mdl-button mdl-js-button text-editor-button" onClick={this.saveEditorText}>
               Save
-              <i className="fa fa-floppy-o icon"></i>
             </button>
             <button
               className="mdl-button mdl-js-button text-editor-button"

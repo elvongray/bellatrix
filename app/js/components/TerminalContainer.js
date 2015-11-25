@@ -152,11 +152,10 @@ var TerminalContainer = React.createClass({
           <div className="mdl-layout__header-row">
             <button className="mdl-button mdl-js-button terminal-editor-button" onClick={this.clearTerminal}>
               clear
-              <i className="fa fa-eraser icon"></i>
             </button>
           </div>
         </header>
-        <div className={"load8"} style={{display: showSpinner}}>
+        <div className={"load7"} style={{display: showSpinner}}>
           <div className="loader">Loading...</div>
         </div>
         <div id="console">

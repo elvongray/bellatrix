@@ -1,18 +1,18 @@
-var ipc = window.require('ipc');
+import ipc from 'fs'
 
-var React = require('react');
+import React from 'react'
 
 //initialize context menu
 require('./context_menu').contextMenu();
 
-var GeneralActions = require('./actions/GeneralActions');
-var AppStore = require('./stores/AppStore');
+import GeneralActions from './actions/GeneralActions'
+import AppStore from './stores/AppStore'
 
-var TextEditorContainer = require('./components/TextEditorContainer');
-var TerminalContainer = require('./components/TerminalContainer');
-var MarkdownContainer = require('./components/MarkdownContainer');
+import TextEditorContainer from './components/TextEditorContainer'
+import TerminalContainer from './components/TerminalContainer'
+import MarkdownContainer from './components/MarkdownContainer'
 
-require('../css/style.css');
+import '../css/style.css'
 
 var Bellatrix = React.createClass({
 

@@ -1,9 +1,9 @@
-import ipc from 'fs'
+// TODO: Solve this issue
+const ipc = window.require('ipc');
 
 import React from 'react'
 
-//initialize context menu
-require('./context_menu').contextMenu();
+import { contextMenu } from './context_menu'
 
 import GeneralActions from './actions/GeneralActions'
 import AppStore from './stores/AppStore'
@@ -14,66 +14,70 @@ import MarkdownContainer from './components/MarkdownContainer'
 
 import '../css/style.css'
 
-var Bellatrix = React.createClass({
+class Bellatrix extends React.Component{
 
-  getInitialState: function() {
-    return  {
+  constructor() {
+    super();
+    this.state = {
       theme: 'twilight',
       language: 'javascript',
       editorText: ''
     }
-  },
+  }
 
-  changeLanguage: function(language) {
+  changeLanguage(language) {
     GeneralActions.loadSavedEditorText(language);
     this.setState({
       language: language
     });
-  },
+  }
 
-  changeEditorTheme: function(theme) {
+  changeEditorTheme(theme) {
     this.setState({
       theme: theme
     });
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     /*
     * Register event to change theme and language
     * When component is mounted.
     */
-    var self = this;
-    ipc.on('change-theme', function(theme) {
-      self.changeEditorTheme(theme);
-      GeneralActions.saveCurrentState(self.state);
+
+    //initialize context menu
+    contextMenu()
+
+    ipc.on('change-theme', (theme) => {
+      this.changeEditorTheme(theme);
+      GeneralActions.saveCurrentState(this.state);
     });
 
-    ipc.on('change-language', function(language) {
-      self.changeLanguage(language);
-      GeneralActions.saveCurrentState(self.state);
+    ipc.on('change-language', (language) => {
+      this.changeLanguage(language);
+      GeneralActions.saveCurrentState(this.state);
     });
 
     // Register method for loading saved state
-    AppStore.addLoadSavedStateListener(this.loadSavedState);
-  },
+    AppStore.addLoadSavedStateListener(this.loadSavedState.bind(this));
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     // trigger action to load the saved state
     GeneralActions.loadSavedState()
-  },
+  }
 
-  getEditorText: function(text) {
+  getEditorText(text) {
     this.setState({
       editorText: text
     });
-  },
+  }
 
-  loadSavedState: function(state) {
+  loadSavedState(state) {
     this.setState(state);
-  },
+  }
 
-  render: function() {
-    var display;
+  render() {
+    let display;
     // If language is markdown display markdown container
     // else display editor
     if (this.state.language === 'markdown') {
@@ -104,6 +108,6 @@ var Bellatrix = React.createClass({
     );
   }
 
-});
+}
 
 React.render(<Bellatrix />, document.getElementById('bellatrix'));

@@ -1,38 +1,38 @@
-var remote = window.require('remote');
-var Menu = remote.require('menu');
-var MenuItem = remote.require('menu-item');
+const remote = window.require('remote');
+const Menu = remote.require('menu');
+const MenuItem = remote.require('menu-item');
 
 
-exports.contextMenu = function() {
+export function contextMenu() {
 
-  var cut = new MenuItem({
+  const cut = new MenuItem({
     label: "Cut",
     accelerator: 'CmdOrCtrl+X',
-    click: function () {
+    click: () => {
       document.execCommand("cut");
     }
   });
 
-  var copy = new MenuItem({
+  const copy = new MenuItem({
     label: "Copy",
     accelerator: 'CmdOrCtrl+C',
-    click: function () {
+    click: () => {
       document.execCommand("copy");
     }
   })
 
-  var paste = new MenuItem({
+  const paste = new MenuItem({
     label: "Paste",
     accelerator: 'CmdOrCtrl+V',
-    click: function () {
+    click: () => {
       document.execCommand("paste");
     }
   });
 
-  var selectAll = new MenuItem({
+  const selectAll = new MenuItem({
     label: "Select All",
     accelerator: 'CmdOrCtrl+A',
-    click: function () {
+    click: () => {
       document.execCommand("selectAll");
     }
   });
@@ -43,7 +43,7 @@ exports.contextMenu = function() {
   textMenu.append(paste);
   textMenu.append(selectAll);
 
-  window.addEventListener('contextmenu', function(e) {
+  window.addEventListener('contextmenu', (e) => {
     switch (e.target.nodeName) {
         case 'TEXTAREA':
         case 'PRE':

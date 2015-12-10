@@ -45,10 +45,10 @@ var TextEditorContainer = React.createClass({
 
     // Hide the run button if language is markdown
     if(nextProps.language === 'markdown') {
-      this.refs.runButton.getDOMNode().classList.add('hide');
+      this.refs.runButton.classList.add('hide');
     }
     else {
-      this.refs.runButton.getDOMNode().classList.remove('hide');
+      this.refs.runButton.classList.remove('hide');
     }
   },
 

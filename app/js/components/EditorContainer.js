@@ -9,7 +9,7 @@ import '../../css/style.css'
 class EditorContainer extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {

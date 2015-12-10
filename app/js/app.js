@@ -2,6 +2,7 @@
 const ipc = window.require('ipc');
 
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import { contextMenu } from './context_menu'
 
@@ -9,7 +10,6 @@ import GeneralActions from './actions/GeneralActions'
 import AppStore from './stores/AppStore'
 
 import EditorContainer from './components/EditorContainer'
-console.log(EditorContainer);
 
 class Bellatrix extends React.Component{
 
@@ -74,13 +74,15 @@ class Bellatrix extends React.Component{
   }
 
   render() {
-    <EditorContainer
-      language={this.state.language}
-      editorText={this.state.editorText}
-      theme={this.state.theme}
-      getEditorText={this.getEditorText}/>
+    return (
+      <EditorContainer
+        language={this.state.language}
+        editorText={this.state.editorText}
+        theme={this.state.theme}
+        getEditorText={this.getEditorText}/>
+    )
   }
 
 }
 
-React.render(<Bellatrix />, document.getElementById('bellatrix'));
+ReactDOM.render(<Bellatrix />, document.getElementById('bellatrix'));

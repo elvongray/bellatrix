@@ -8,11 +8,8 @@ import { contextMenu } from './context_menu'
 import GeneralActions from './actions/GeneralActions'
 import AppStore from './stores/AppStore'
 
-import TextEditorContainer from './components/TextEditorContainer'
-import TerminalContainer from './components/TerminalContainer'
-import MarkdownContainer from './components/MarkdownContainer'
-
-import '../css/style.css'
+import EditorContainer from './components/EditorContainer'
+console.log(EditorContainer);
 
 class Bellatrix extends React.Component{
 
@@ -77,35 +74,11 @@ class Bellatrix extends React.Component{
   }
 
   render() {
-    let display;
-    // If language is markdown display markdown container
-    // else display editor
-    if (this.state.language === 'markdown') {
-      display = (
-        <MarkdownContainer
-          editorText={this.state.editorText}/>
-      );
-    }
-    else {
-      display = (
-        <TerminalContainer
-          language={this.state.language}
-          editorText={this.state.editorText}/>
-      );
-    }
-    return (
-      <div className="mdl-grid mdl-grid--no-spacing editor-container">
-        <div className="mdl-cell mdl-cell--6-col text-editor">
-          <TextEditorContainer
-            theme={this.state.theme}
-            language={this.state.language}
-            getEditorText={this.getEditorText}/>
-        </div>
-        <div className="mdl-cell mdl-cell--6-col terminal">
-          {display}
-        </div>
-      </div>
-    );
+    <EditorContainer
+      language={this.state.language}
+      editorText={this.state.editorText}
+      theme={this.state.theme}
+      getEditorText={this.getEditorText}/>
   }
 
 }

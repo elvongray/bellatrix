@@ -1,63 +1,56 @@
-var React = require('react');
+import React from 'react'
 
-require('../../css/markdown.css');
+import MarkdownComponent from './MarkdownComponent'
 
-var md;
 
-var MarkdownConatiner = React.createClass({
+class MarkdownContainer extends React.Component{
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props)
+    this.md;
+    this.state = {
       text: ""
     }
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
-    if(nextProps.editorText !== this.props.editorText) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.editorText !== this.props.editorText) {
       this.setState({
         text: nextProps.editorText
       })
     }
-  },
+  }
 
-  componentWillMount: function() {
-    var self = this;
+  componentWillMount() {
 
     document.addEventListener('click', self.preventLinksFromOpening, false);
 
-    md = markdownit({
+    this.md = markdownit({
       html: true,
       linkify: true,
       typographer: true
     });
-  },
+  }
 
   // Prevent links from opening in
   // electron app.
-  preventLinksFromOpening: function(e) {
+  preventLinksFromOpening(e) {
 
-    var checkDomElement = function (element) {
+    var checkDomElement = (element) => {
       if (element.nodeName === 'A') {
          e.preventDefault();
       }
     }
     checkDomElement(e.target);
-  },
+  }
 
-  render: function() {
-
+  render() {
     return (
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header className="mdl-layout__header markdown-header">
-          <div className="mdl-layout__header-row">
-          </div>
-        </header>
-        <div className="markdown-body"
-             dangerouslySetInnerHTML={{__html: md.render(this.state.text)}}>
-        </div>
-      </div>
+      <MarkdownComponent
+        markdown={this.md}
+        text={this.state.text}/>
     );
   }
-});
+}
 
-module.exports = MarkdownConatiner;
+export default MarkdownContainer;

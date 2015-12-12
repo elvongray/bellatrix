@@ -79,7 +79,7 @@ class Bellatrix extends React.Component{
         language={this.state.language}
         editorText={this.state.editorText}
         theme={this.state.theme}
-        getEditorText={this.getEditorText}/>
+        getEditorText={this.getEditorText.bind(this)}/>
     )
   }
 

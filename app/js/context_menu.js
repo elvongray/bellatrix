@@ -8,33 +8,25 @@ export function contextMenu() {
   const cut = new MenuItem({
     label: "Cut",
     accelerator: 'CmdOrCtrl+X',
-    click: () => {
-      document.execCommand("cut");
-    }
+    click: () => document.execCommand("cut")
   });
 
   const copy = new MenuItem({
     label: "Copy",
     accelerator: 'CmdOrCtrl+C',
-    click: () => {
-      document.execCommand("copy");
-    }
+    click: () => document.execCommand("copy")
   })
 
   const paste = new MenuItem({
     label: "Paste",
     accelerator: 'CmdOrCtrl+V',
-    click: () => {
-      document.execCommand("paste");
-    }
+    click: () => document.execCommand("paste")
   });
 
   const selectAll = new MenuItem({
     label: "Select All",
     accelerator: 'CmdOrCtrl+A',
-    click: () => {
-      document.execCommand("selectAll");
-    }
+    click: () => document.execCommand("selectAll")
   });
 
   var textMenu = new Menu();

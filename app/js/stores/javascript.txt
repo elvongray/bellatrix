@@ -1,2 +1,3 @@
-sjajsakjsaksa
-saksajska
+function crap() {
+    console.log("what is going on here")
+}

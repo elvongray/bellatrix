@@ -1,10 +1,10 @@
 /**
-* Note: this module contains infor about the currently speciied language.
+* Note: this module contains info about the currently specified language.
 * The current implementation hard codes the version of the language been used,
 * this will change in later implemetations.
 */
 
-exports.languageSpec = function(language) {
+export function languageSpec(language) {
 
   switch(language) {
       case 'javascript':

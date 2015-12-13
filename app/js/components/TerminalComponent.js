@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../../css/terminal.css'
+
 class TerminalComponent extends React.Component {
 
   constructor(props) {

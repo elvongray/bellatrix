@@ -4,7 +4,6 @@ import TerminalComponent from './TerminalComponent'
 
 import {languageSpec} from '../lang_config/language'
 
-require('../../css/terminal.css');
 
 class TerminalContainer extends React.Component{
 
@@ -55,7 +54,7 @@ class TerminalContainer extends React.Component{
     };
 
     const progressCallback = (m, n) => {
-
+      // Will use later ¯\_(ツ)_/¯
     };
 
     const timeoutCallback = () => {
@@ -104,7 +103,7 @@ class TerminalContainer extends React.Component{
   loadLanguage(language) {
     this.jsrepl.loadLanguage(language, () => {
       this.toggleSpinner()
-      this.jqconsole = $('#console').jqconsole(`${languageSpec(language)}\n`, '>>>', '...');
+      this.jqconsole = $('#console').jqconsole(`${languageSpec(language)}\n`, '>>> ', '...');
       this.registerShortcuts();
       this.startPrompt();
     });
@@ -128,7 +127,7 @@ class TerminalContainer extends React.Component{
       return;
     }
     this.setState({
-        showSpinner: true
+      showSpinner: true
     });
   }
 

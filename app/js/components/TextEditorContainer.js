@@ -1,35 +1,34 @@
-var ipc = window.require('ipc');
+const ipc = window.require('ipc');
 
-var React =  require('react');
+import React from 'react'
 
-var GeneralActions = require('../actions/GeneralActions');
-var AppStore = require('../stores/AppStore');
+import GeneralActions from '../actions/GeneralActions'
+import AppStore from '../stores/AppStore'
+import TextEditorComponent from './TextEditorComponent'
 
-//initialize ace editor
-var aceEditor;
 
-require('../../css/editor.css');
+class TextEditorContainer extends React.Component{
 
-var TextEditorContainer = React.createClass({
-
-  getInitialState: function() {
-    return {
+  constructor(props) {
+    super(props)
+    this.aceEditor
+    this.state = {
       cursorPosition: {row: 0, column: 0},
       saved: true
     }
-  },
+  }
 
-  changeTheme: function(theme) {
-    aceEditor.setTheme("ace/theme/" + theme);
-  },
+  changeTheme(theme) {
+    this.aceEditor.setTheme("ace/theme/" + theme);
+  }
 
-  changeLanguage: function(language) {
+  changeLanguage(language) {
     if (language === 'coffeescript') language = 'coffee';
-    aceEditor.session.setMode("ace/mode/" + language);
-    aceEditor.setValue("");
-  },
+    this.aceEditor.session.setMode(`ace/mode/${language}`);
+    this.aceEditor.setValue("");
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.theme !== this.props.theme) {
       this.changeTheme(nextProps.theme);
     }
@@ -42,71 +41,61 @@ var TextEditorContainer = React.createClass({
     if (nextProps.language !== this.props.language){
       GeneralActions.loadSavedEditorText(nextProps.language);
     }
+  }
 
-    // Hide the run button if language is markdown
-    if(nextProps.language === 'markdown') {
-      this.refs.runButton.classList.add('hide');
-    }
-    else {
-      this.refs.runButton.classList.remove('hide');
-    }
-  },
-
-  componentWillMount: function() {
-    var self = this;
-
+  componentWillMount() {
     // Add listener to load saved text
-    AppStore.addLoadSavedTextListener(this.loadSavedText);
+    AppStore.addLoadSavedTextListener(this.loadSavedText.bind(this));
 
     // Listener for saving the editor text
-    ipc.on('save-text', function() {
-      self.saveEditorText()
+    ipc.on('save-text', () => {
+      this.saveEditorText()
     });
 
     // Listener for executing the code in the editor
-    ipc.on('run', function() {
-      self.getEditorText()
+    ipc.on('run', () => {
+      this.getEditorText()
     });
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.setUpAceEditor();
     // Trigger event to load saved editor text
     GeneralActions.loadSavedEditorText(this.props.language);
-  },
+  }
 
-  setUpAceEditor: function() {
+  setUpAceEditor() {
     // Set up ace editor
-    var self = this;
-    aceEditor = ace.edit("editor");
-    aceEditor.setTheme("ace/theme/" + this.props.theme);
-    aceEditor.session.setMode("ace/mode/" + this.props.language);
-    aceEditor.setShowPrintMargin(false);
-    aceEditor.getSession().setUseWrapMode(true);
-    aceEditor.$blockScrolling = Infinity;
+    this.aceEditor = ace.edit("editor");
+    this.aceEditor.setTheme(`ace/theme/${this.props.theme}`);
+    this.aceEditor.session.setMode(`ace/mode/${this.props.language}`);
+    this.aceEditor.setShowPrintMargin(false);
+    this.aceEditor.getSession().setUseWrapMode(true);
+    this.aceEditor.$blockScrolling = Infinity;
 
     this.enableLanguageIntellisence();
 
-    aceEditor.getSession().on('change', function(e) {
-      self.handleEditorChange(e);
+    this.aceEditor.getSession().on('change', (e) => {
+      this.handleEditorChange(e);
 
-      self.toogleUnSaveIndicator();
+      this.toogleUnSaveIndicator();
     });
 
-    aceEditor.selection.on("changeCursor", function() {
-      self.setState({
-        cursorPosition: aceEditor.getCursorPosition()
+    this.aceEditor.selection.on("changeCursor", () => {
+      this.setState({
+        cursorPosition: this.aceEditor.getCursorPosition()
       })
     });
-  },
+  }
 
   // Note: intellisence is currently supported for javascript only.
-  enableLanguageIntellisence: function() {
-    var useWebWorker = window.location.search.toLowerCase().indexOf('noworker');
-    aceEditor.getSession().setUseWorker(useWebWorker);
+  enableLanguageIntellisence() {
+    const useWebWorker = window.location.search.toLowerCase().indexOf('noworker');
+    this.aceEditor.getSession().setUseWorker(useWebWorker);
 
-    ace.config.loadModule('ace/ext/tern', function () {
-      aceEditor.setOptions({
+    ace.config.loadModule('ace/ext/tern', () => {
+      let self = this
+      this.aceEditor.setOptions({
         enableTern: {
           defs: ['browser', 'ecma5'],
           plugins: {
@@ -115,82 +104,60 @@ var TextEditorContainer = React.createClass({
             }
           },
           useWorker: useWebWorker,
-          switchToDoc: function (name, start) {
+          switchToDoc(name, start) {
             console.log('switchToDoc called but not defined. name=' + name + '; start=', start);
           },
-          startedCb: function () {
-            console.log('editor.ternServer:', aceEditor.ternServer);
+          startedCb() {
+            console.log('editor.ternServer:', self.aceEditor.ternServer);
           },
         },
         enableBasicAutocompletion: true
       });
     });
-  },
+  }
 
-  toogleSaveIndicator: function() {
+  toogleSaveIndicator() {
     this.setState({
       saved: true
     });
-  },
+  }
 
-  toogleUnSaveIndicator: function() {
+  toogleUnSaveIndicator() {
     this.setState({
       saved: false
     });
-  },
+  }
 
-  getEditorText: function() {
-    this.props.getEditorText(aceEditor.getValue());
-  },
+  getEditorText() {
+    this.props.getEditorText(this.aceEditor.getValue());
+  }
 
-  loadSavedText: function(text) {
-    aceEditor.setValue(text)
-  },
+  loadSavedText(text) {
+    this.aceEditor.setValue(text)
+  }
 
-  saveEditorText: function() {
+  saveEditorText() {
     this.toogleSaveIndicator();
-    GeneralActions.saveEditorText(aceEditor.getValue(), this.props.language)
-  },
+    GeneralActions.saveEditorText(this.aceEditor.getValue(), this.props.language)
+  }
 
-  handleEditorChange: function(event) {
-    if(this.props.language === "markdown") {
-      this.props.getEditorText(aceEditor.getValue());
+  handleEditorChange(event) {
+    if (this.props.language === "markdown") {
+      this.props.getEditorText(this.aceEditor.getValue());
     }
-  },
+  }
 
-  render: function() {
-    var color = this.state.saved ? "green" : "red"
-
+  render() {
     return (
-      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
-        <header className="mdl-layout__header text-editor-header">
-          <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title" >{this.props.language}</span>
-            <button className="mdl-button mdl-js-button text-editor-button" onClick={this.saveEditorText}>
-              Save
-            </button>
-            <button
-              className="mdl-button mdl-js-button text-editor-button run-button"
-              onClick={this.getEditorText}
-              ref="runButton">
-              Run
-              <i className="fa fa-caret-right icon"></i>
-            </button>
-          </div>
-        </header>
-        <pre id="editor">
-        </pre>
-        <footer className="footer">
-          <div className={"save-indicator " + color} ></div>
-          <div className="cursor-position">
-            <span>Line {this.state.cursorPosition.row + 1}, </span>
-            <span>Column {this.state.cursorPosition.column + 1}</span>
-          </div>
-          <div className="editor-theme">Theme: {this.props.theme}</div>
-        </footer>
-      </div>
+      <TextEditorComponent
+        language={this.props.language}
+        saveEditorText={this.saveEditorText.bind(this)}
+        getEditorText={this.getEditorText.bind(this)}
+        cursorPosition={this.state.cursorPosition}
+        theme={this.props.theme}
+        saved={this.state.saved}/>
     )
   }
-});
+}
 
-module.exports = TextEditorContainer;
+export default TextEditorContainer;

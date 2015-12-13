@@ -1,4 +1,4 @@
-// TODO: Solve this issue
+// TODO: Solve this issue ಠ_ಠ
 const ipc = window.require('ipc');
 
 import React from 'react'

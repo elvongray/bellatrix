@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {Resizable} from 'react-resizable'
+
 import TextEditorContainer from './TextEditorContainer'
 import TerminalContainer from './TerminalContainer'
 import MarkdownContainer from './MarkdownContainer'

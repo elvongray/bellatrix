@@ -9,7 +9,7 @@ import { contextMenu } from './context_menu'
 import GeneralActions from './actions/GeneralActions'
 import AppStore from './stores/AppStore'
 
-import EditorContainer from './components/EditorContainer'
+import EditorContainer from './containers/EditorContainer'
 
 class Bellatrix extends React.Component{
 

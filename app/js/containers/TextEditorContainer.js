@@ -4,7 +4,7 @@ import React from 'react'
 
 import GeneralActions from '../actions/GeneralActions'
 import AppStore from '../stores/AppStore'
-import TextEditorComponent from './TextEditorComponent'
+import TextEditorComponent from '../components/TextEditorComponent'
 
 
 class TextEditorContainer extends React.Component{

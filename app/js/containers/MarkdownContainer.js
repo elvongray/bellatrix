@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MarkdownComponent from './MarkdownComponent'
+import MarkdownComponent from '../components/MarkdownComponent'
 
 
 class MarkdownContainer extends React.Component{

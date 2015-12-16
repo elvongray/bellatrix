@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TerminalComponent from './TerminalComponent'
+import TerminalComponent from '../components/TerminalComponent'
 
 import {languageSpec} from '../lang_config/language'
 

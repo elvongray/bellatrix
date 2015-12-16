@@ -31,7 +31,8 @@
     "flux": "^2.1.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "react-resizable": "^1.0.1"
   },
   "repository": {
     "type": "git",

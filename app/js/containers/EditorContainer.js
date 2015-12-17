@@ -1,6 +1,7 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
-import {Resizable} from 'react-resizable'
+import Draggable from 'react-draggable'
 
 import TextEditorContainer from './TextEditorContainer'
 import TerminalContainer from './TerminalContainer'
@@ -12,6 +13,23 @@ class EditorContainer extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      width: 0,
+      height: 0
+    }
+    this.handleDrag = this.handleDrag.bind(this)
+  }
+
+  componentDidMount() {
+    this.terminalDomNode = ReactDOM.findDOMNode(this.refs.terminal)
+    this.editorDomNode = ReactDOM.findDOMNode(this.refs.editor)
+    this.terminalDomNode.style.width = `${this.terminalDomNode.offsetWidth}px`
+    this.editorDomNode.style.width = `${this.editorDomNode.offsetWidth}px`
+  }
+
+  handleDrag(event, ui) {
+    this.terminalDomNode.style.width = `${this.terminalDomNode.offsetWidth - ui.deltaX}px`
+    this.editorDomNode.style.width = `${this.editorDomNode.offsetWidth + ui.deltaX}px`
   }
 
   render() {
@@ -33,13 +51,18 @@ class EditorContainer extends React.Component {
     }
     return (
       <div className="mdl-grid mdl-grid--no-spacing editor-container">
-        <div className="mdl-cell mdl-cell--6-col text-editor">
+        <div ref="editor" className="mdl-cell mdl-cell--6-col text-editor">
           <TextEditorContainer
             theme={this.props.theme}
             language={this.props.language}
             getEditorText={this.props.getEditorText}/>
         </div>
-        <div className="mdl-cell mdl-cell--6-col terminal">
+        <Draggable
+          onDrag={this.handleDrag}
+          axis="x">
+          <div className="draggable-div"></div>
+        </Draggable>
+        <div ref="terminal" className="mdl-cell mdl-cell--6-col terminal">
           {display}
         </div>
       </div>

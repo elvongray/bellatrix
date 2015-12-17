@@ -1,11 +1,11 @@
 .text-editor {
   height: 0;
   padding-bottom: 100%;
+  position: relative;
 }
 
 .text-editor-container {
-  width: 50%;
-  position: fixed;
+  width: 100%;
   overflow: hidden;
 }
 

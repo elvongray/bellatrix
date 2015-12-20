@@ -37,8 +37,8 @@ class TextEditorComponent extends React.Component {
             </button>
           </div>
         </header>
-        <pre id="editor">
-        </pre>
+        <div id="editor">
+        </div>
         <footer className="footer">
           <div className={"save-indicator " + color} ></div>
           <div className="cursor-position">

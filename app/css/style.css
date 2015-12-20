@@ -1,6 +1,18 @@
+html, body{
+  height: 100%;
+  position: fixed;
+}
+
 body {
-  overflow: hidden;
   font-family: "Lato", 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+#bellatrix {
+  height: 100%;
+}
+
+.editor-container {
+  height: 100%;
 }
 
 .draggable-div {
@@ -8,6 +20,7 @@ body {
   height: 0;
   padding-bottom: 100%;
   cursor: move;
+  z-index: 1;
 }
 
 .footer {

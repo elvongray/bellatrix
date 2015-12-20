@@ -12,15 +12,18 @@ body {
 }
 
 .editor-container {
+  position: relative;
   height: 100%;
 }
 
 .draggable-div {
-  width: 3px;
-  height: 0;
-  padding-bottom: 100%;
-  cursor: move;
-  z-index: 1;
+  top: 0px;
+  position: absolute;
+  z-index: 1000;
+  background: #DDD;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
 }
 
 .footer {

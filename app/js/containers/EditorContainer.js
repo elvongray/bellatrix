@@ -18,7 +18,6 @@ class EditorContainer extends React.Component {
       height: 0
     }
     this.handleDrag = this.handleDrag.bind(this)
-    this.handleDragStop = this.handleDragStop.bind(this)
   }
 
   componentDidMount() {
@@ -29,10 +28,6 @@ class EditorContainer extends React.Component {
   handleDrag(event, ui) {
     this.terminalDomNode.style.width = `${this.terminalDomNode.offsetWidth - ui.deltaX}px`
     this.editorDomNode.style.width = `${this.editorDomNode.offsetWidth + ui.deltaX}px`
-  }
-
-  handleDragStop(event, ui) {
-    console.log("stopped");
   }
 
   render() {
@@ -62,7 +57,6 @@ class EditorContainer extends React.Component {
         </div>
         <Draggable
           onDrag={this.handleDrag}
-          onStop={this.handleDragStop}
           axis="x">
           <div className="draggable-div"></div>
         </Draggable>

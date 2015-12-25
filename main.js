@@ -24,11 +24,10 @@ app.on('ready', function() {
                                    height: 800,
                                    'min-width': 864});
 
-  if(debug) {
+  if (debug) {
     mainWindow.loadUrl('file://' + __dirname + '/app/index.dev.html');
     mainWindow.openDevTools();
-  }
-  else {
+  } else {
     mainWindow.loadUrl('file://' + __dirname + '/app/index.prod.html');
   }
 

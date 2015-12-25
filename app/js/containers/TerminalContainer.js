@@ -134,7 +134,7 @@ class TerminalContainer extends React.Component{
   render() {
     return (
       <TerminalComponent
-        clearTerminal={this.clearTerminal}
+        clearTerminal={this.clearTerminal.bind(this)}
         showSpinner={this.state.showSpinner}/>
     )
   }

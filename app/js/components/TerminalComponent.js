@@ -15,7 +15,7 @@ class TerminalComponent extends React.Component {
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header className="mdl-layout__header terminal-header">
           <div className="mdl-layout__header-row">
-            <button className="mdl-button mdl-js-button terminal-editor-button" onClick={this.clearTerminal}>
+            <button className="mdl-button mdl-js-button terminal-editor-button" onClick={this.props.clearTerminal}>
               clear
             </button>
           </div>

@@ -7,7 +7,7 @@ import AppStore from '../stores/AppStore'
 import TextEditorComponent from '../components/TextEditorComponent'
 
 
-class TextEditorContainer extends React.Component{
+class TextEditorContainer extends React.Component {
 
   constructor(props) {
     super(props)
@@ -19,7 +19,7 @@ class TextEditorContainer extends React.Component{
   }
 
   changeTheme(theme) {
-    this.aceEditor.setTheme("ace/theme/" + theme);
+    this.aceEditor.setTheme(`ace/theme/${theme}`);
   }
 
   changeLanguage(language) {

@@ -11,7 +11,7 @@ import AppStore from './stores/AppStore'
 
 import EditorContainer from './containers/EditorContainer'
 
-class Bellatrix extends React.Component{
+class Bellatrix extends React.Component {
 
   constructor() {
     super();

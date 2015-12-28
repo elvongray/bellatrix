@@ -5,7 +5,7 @@ import TerminalComponent from '../components/TerminalComponent'
 import {languageSpec} from '../lang_config/language'
 
 
-class TerminalContainer extends React.Component{
+class TerminalContainer extends React.Component {
 
   constructor(props) {
     super(props)

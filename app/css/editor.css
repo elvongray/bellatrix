@@ -66,23 +66,6 @@
   margin-left: 15px;
 }
 
-.save-indicator {
-  width: 10px;
-  height: 10px;
-  margin-top: 4px;
-  margin-left: 10px;
-  border-radius: 10px;
-  float: left;
-}
-
-.green {
-  background: green;
-}
-
-.red {
-  background: red;
-}
-
 .editor-theme {
   color: #757575;
   font-size: 12px;

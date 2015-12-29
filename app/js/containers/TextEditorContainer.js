@@ -13,8 +13,7 @@ class TextEditorContainer extends React.Component {
     super(props)
     this.aceEditor
     this.state = {
-      cursorPosition: {row: 0, column: 0},
-      saved: true
+      cursorPosition: {row: 0, column: 0}
     }
   }
 
@@ -47,11 +46,6 @@ class TextEditorContainer extends React.Component {
     // Add listener to load saved text
     AppStore.addLoadSavedTextListener(this.loadSavedText.bind(this));
 
-    // Listener for saving the editor text
-    ipc.on('save-text', () => {
-      this.saveEditorText()
-    });
-
     // Listener for executing the code in the editor
     ipc.on('run', () => {
       this.getEditorText()
@@ -77,8 +71,6 @@ class TextEditorContainer extends React.Component {
 
     this.aceEditor.getSession().on('change', (e) => {
       this.handleEditorChange(e);
-
-      this.toogleUnSaveIndicator();
     });
 
     this.aceEditor.selection.on("changeCursor", () => {
@@ -116,18 +108,6 @@ class TextEditorContainer extends React.Component {
     });
   }
 
-  toogleSaveIndicator() {
-    this.setState({
-      saved: true
-    });
-  }
-
-  toogleUnSaveIndicator() {
-    this.setState({
-      saved: false
-    });
-  }
-
   getEditorText() {
     this.props.getEditorText(this.aceEditor.getValue());
   }
@@ -137,7 +117,6 @@ class TextEditorContainer extends React.Component {
   }
 
   saveEditorText() {
-    this.toogleSaveIndicator();
     GeneralActions.saveEditorText(this.aceEditor.getValue(), this.props.language)
   }
 
@@ -145,17 +124,18 @@ class TextEditorContainer extends React.Component {
     if (this.props.language === "markdown") {
       this.props.getEditorText(this.aceEditor.getValue());
     }
+
+    // automatically save text in editor when ther is a change
+    this.saveEditorText()
   }
 
   render() {
     return (
       <TextEditorComponent
         language={this.props.language}
-        saveEditorText={this.saveEditorText.bind(this)}
         getEditorText={this.getEditorText.bind(this)}
         cursorPosition={this.state.cursorPosition}
-        theme={this.props.theme}
-        saved={this.state.saved}/>
+        theme={this.props.theme}/>
     )
   }
 }

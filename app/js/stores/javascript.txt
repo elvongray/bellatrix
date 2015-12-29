@@ -1,3 +1,8 @@
 function crap() {
-    console.log("what is going on here")
+    console.log("what is going on here");
+}
+
+
+for (var i = 0; i < 10; i++) {
+    console.log("I am a boy");
 }

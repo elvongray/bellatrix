@@ -18,16 +18,12 @@ class TextEditorComponent extends React.Component {
   }
 
   render() {
-    var color = this.props.saved ? "green" : "red"
 
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
-            <button className="mdl-button mdl-js-button text-editor-button" onClick={this.props.saveEditorText}>
-              Save
-            </button>
             <button
               className="mdl-button mdl-js-button text-editor-button run-button"
               onClick={this.props.getEditorText}
@@ -40,7 +36,6 @@ class TextEditorComponent extends React.Component {
         <div id="editor">
         </div>
         <footer className="footer">
-          <div className={"save-indicator " + color} ></div>
           <div className="cursor-position">
             <span>Line {this.props.cursorPosition.row + 1}, </span>
             <span>Column {this.props.cursorPosition.column + 1}</span>

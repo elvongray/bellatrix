@@ -30,7 +30,8 @@
     "electron-prebuilt": "^0.28.3",
     "flux": "^2.1.1",
     "object-assign": "^4.0.1",
-    "react": "^0.14.3",
+    "react": "^0.14.5",
+    "react-dd-menu": "^1.0.5",
     "react-dom": "^0.14.3",
     "react-draggable": "^1.1.3"
   },

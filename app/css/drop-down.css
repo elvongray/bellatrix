@@ -1,0 +1,27 @@
+.select-dropdown {
+
+}
+
+.select-dropdown-toggle {
+  width: 150px;
+  position: relative;
+  height: 25px;
+  border: 1px #616161 solid;
+}
+
+.select-dropdown-toggle-text {
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  left: 10px;
+  top: -6px;
+  height: 20px;
+}
+
+.dropdown-icon {
+  position: absolute;
+  color: white;
+  right: 10px;
+  top: 5px;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import DropdownComponent from './DropdownComponent'
+
 import '../../css/editor.css'
 
 class TextEditorComponent extends React.Component {
@@ -17,13 +19,27 @@ class TextEditorComponent extends React.Component {
     }
   }
 
+  changeLanguage() {
+
+  }
+
   render() {
+    let language = [
+      'JAVASCRIPT',
+      'RUBY',
+      'COFFEESCRIPT',
+      'MARKDOWN'
+    ]
 
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <span className="mdl-layout-title" >{this.props.language}</span>
+            <DropdownComponent
+              changeLanguage={this.changeLanguage.bind(this)}
+              languages={language}
+              language={this.props.language}/>
             <button
               className="mdl-button mdl-js-button text-editor-button run-button"
               onClick={this.props.getEditorText}

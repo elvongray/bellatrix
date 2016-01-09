@@ -35,7 +35,6 @@ class TextEditorComponent extends React.Component {
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout-title" >{this.props.language}</span>
             <DropdownComponent
               changeLanguage={this.changeLanguage.bind(this)}
               languages={language}

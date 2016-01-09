@@ -44,8 +44,15 @@ class DropdownComponent extends React.Component {
 
     return (
       <DropdownMenu {...menuOptions}>
-        <li><a href="#">Example 1</a></li>
-        <li><button type="button" onClick={this.click.bind(this)}>Example 2</button></li>
+        {
+          this.props.languages.map((language) => {
+            return (
+              <li key={this.props.languages.indexOf(language)}>
+                <button type="button">{language}</button>
+              </li>
+            )
+          })
+        }
       </DropdownMenu>
     )
   }

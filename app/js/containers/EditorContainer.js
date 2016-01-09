@@ -53,7 +53,8 @@ class EditorContainer extends React.Component {
           <TextEditorContainer
             theme={this.props.theme}
             language={this.props.language}
-            getEditorText={this.props.getEditorText}/>
+            getEditorText={this.props.getEditorText}
+            changeLanguage={this.props.changeLanguage}/>
         </div>
         <Draggable
           onDrag={this.handleDrag}

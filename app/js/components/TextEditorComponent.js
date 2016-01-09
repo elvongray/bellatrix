@@ -19,8 +19,8 @@ class TextEditorComponent extends React.Component {
     }
   }
 
-  changeLanguage() {
-
+  changeLanguage(language) {
+    this.props.changeLanguage(language.toLowerCase())
   }
 
   render() {

@@ -26,8 +26,8 @@ class DropdownComponent extends React.Component {
     })
   }
 
-  click() {
-    console.log("you clicked me")
+  click(language) {
+    this.props.changeLanguage(language)
   }
 
   render() {
@@ -48,7 +48,9 @@ class DropdownComponent extends React.Component {
           this.props.languages.map((language) => {
             return (
               <li key={this.props.languages.indexOf(language)}>
-                <button type="button">{language}</button>
+                <button type="button" onClick={this.click.bind(this, language)}>
+                  {language}
+                </button>
               </li>
             )
           })

@@ -6,6 +6,14 @@ var assign = require('object-assign');
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
+  emitChangeLanguage: function(language) {
+    this.emit('change_language', language);
+  },
+
+  addChangeLanguageListener: function(callback) {
+    this.on('change_language', callback);
+  },
+
   emitLoadSavedState: function(data) {
     this.emit('load_saved_state', data);
   },
@@ -28,6 +36,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
+
+      case "CHANGE_LANGUAGE":
+        AppStore.emitChangeLanguage(action.data);
+        break;
 
       case "LOAD_SAVED_STATE":
         AppStore.emitLoadSavedState(action.data);

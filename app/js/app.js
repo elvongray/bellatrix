@@ -56,6 +56,9 @@ class Bellatrix extends React.Component {
 
     // Register method for loading saved state
     AppStore.addLoadSavedStateListener(this.loadSavedState.bind(this));
+
+    // Register method for changing language
+    AppStore.addChangeLanguageListener(this.changeLanguage.bind(this));
   }
 
   componentDidMount() {
@@ -79,8 +82,7 @@ class Bellatrix extends React.Component {
         language={this.state.language}
         editorText={this.state.editorText}
         theme={this.state.theme}
-        getEditorText={this.getEditorText.bind(this)}
-        changeLanguage={this.changeLanguage.bind(this)}/>
+        getEditorText={this.getEditorText.bind(this)}/>
     )
   }
 

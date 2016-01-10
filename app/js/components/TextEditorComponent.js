@@ -2,6 +2,8 @@ import React from 'react'
 
 import DropdownComponent from './DropdownComponent'
 
+import GeneralActions from '../actions/GeneralActions'
+
 import '../../css/editor.css'
 
 class TextEditorComponent extends React.Component {
@@ -20,7 +22,7 @@ class TextEditorComponent extends React.Component {
   }
 
   changeLanguage(language) {
-    this.props.changeLanguage(language.toLowerCase())
+    GeneralActions.changeLanguage(language.toLowerCase())
   }
 
   render() {

@@ -135,8 +135,7 @@ class TextEditorContainer extends React.Component {
         language={this.props.language}
         getEditorText={this.getEditorText.bind(this)}
         cursorPosition={this.state.cursorPosition}
-        theme={this.props.theme}
-        changeLanguage={this.props.changeLanguage}/>
+        theme={this.props.theme}/>
     )
   }
 }

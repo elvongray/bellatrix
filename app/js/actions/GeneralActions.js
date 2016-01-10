@@ -6,6 +6,13 @@ let dir = './app/js/stores/'
 
 const GeneralActions = {
 
+  changeLanguage(langauge) {
+    AppDispatcher.dispatch({
+      actionType: "CHANGE_LANGUAGE",
+      data: langauge
+    })
+  },
+
   loadSavedState() {
     // Load the saved state of the editor
     fs.readFile(dir + 'current_state.json', (err, data) => {

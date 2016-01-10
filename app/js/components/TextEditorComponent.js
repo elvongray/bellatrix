@@ -26,7 +26,7 @@ class TextEditorComponent extends React.Component {
   }
 
   render() {
-    let language = [
+    let languages = [
       'JAVASCRIPT',
       'RUBY',
       'COFFEESCRIPT',
@@ -35,11 +35,12 @@ class TextEditorComponent extends React.Component {
 
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header text-editor-container">
+        {/* TODO: This header should be a component */}
         <header className="mdl-layout__header text-editor-header">
           <div className="mdl-layout__header-row">
             <DropdownComponent
               changeLanguage={this.changeLanguage.bind(this)}
-              languages={language}
+              languages={languages}
               language={this.props.language}/>
             <button
               className="mdl-button mdl-js-button text-editor-button run-button"
@@ -52,6 +53,7 @@ class TextEditorComponent extends React.Component {
         </header>
         <div id="editor">
         </div>
+       {/* TODO: This footer should be a component */}
         <footer className="footer">
           <div className="cursor-position">
             <span>Line {this.props.cursorPosition.row + 1}, </span>

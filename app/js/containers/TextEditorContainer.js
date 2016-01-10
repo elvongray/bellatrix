@@ -126,8 +126,9 @@ class TextEditorContainer extends React.Component {
     }
 
     // automatically save text in editor when ther is a change
-    console.log(event)
-    this.saveEditorText()
+    if (event.data.action == 'insertText') {
+      this.saveEditorText();
+    }
   }
 
   render() {

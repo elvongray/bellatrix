@@ -25,6 +25,12 @@ class TextEditorComponent extends React.Component {
     GeneralActions.changeLanguage(language.toLowerCase())
   }
 
+  unslugify(string) {
+    return string.replace(/_/g, " ").replace(/\b[a-z]/g, function() {
+        return arguments[0].toUpperCase();
+    });
+  }
+
   render() {
     let languages = [
       'JAVASCRIPT',
@@ -59,7 +65,7 @@ class TextEditorComponent extends React.Component {
             <span>Line {this.props.cursorPosition.row + 1}, </span>
             <span>Column {this.props.cursorPosition.column + 1}</span>
           </div>
-          <div className="editor-theme">Theme: {this.props.theme}</div>
+          <div className="editor-theme">Theme: {this.unslugify(this.props.theme)}</div>
         </footer>
       </div>
     )

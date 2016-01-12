@@ -18,11 +18,30 @@ class EditorContainer extends React.Component {
       height: 0
     }
     this.handleDrag = this.handleDrag.bind(this)
+    this.handleResize = this.handleResize.bind(this)
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentDidMount() {
     this.terminalDomNode = ReactDOM.findDOMNode(this.refs.terminal)
     this.editorDomNode = ReactDOM.findDOMNode(this.refs.editor)
+    this.draggable = ReactDOM.findDOMNode(this.refs.draggable)
+    console.log(this.draggable.style)
+  }
+
+  handleResize() {
+    let eW = this.editorDomNode.offsetWidth
+    let tW = this.terminalDomNode.offsetWidth
+    let calcNewWidthE = Math.floor((window.innerWidth + (eW - tW)) / 2)
+    let calcNewWidthT = Math.floor((window.innerWidth - (eW - tW)) / 2)
+    this.draggable.style.left = `${calcNewWidthE}px`
+    this.editorDomNode.style.width = `${calcNewWidthE}px`
+    this.terminalDomNode.style.width = `${calcNewWidthT}px`
+    this.draggable.style.webkitTransform = 'translate(0px, 0px)'
+    this.draggable.style.transform = 'translate(0px, 0px)'
   }
 
   handleDrag(event, ui) {
@@ -47,6 +66,7 @@ class EditorContainer extends React.Component {
           editorText={this.props.editorText}/>
       );
     }
+
     return (
       <div className="mdl-grid mdl-grid--no-spacing editor-container">
         <div ref="editor" className="mdl-cell mdl-cell--6-col text-editor">
@@ -56,9 +76,10 @@ class EditorContainer extends React.Component {
             getEditorText={this.props.getEditorText}/>
         </div>
         <Draggable
-          onDrag={this.handleDrag}
-          axis="x">
-          <div className="draggable-div"></div>
+            onMouseDown={this.handleMouseDown}
+            onDrag={this.handleDrag}
+            axis="x">
+            <div ref="draggable" className="draggable-div"></div>
         </Draggable>
         <div ref="terminal" className="mdl-cell mdl-cell--6-col terminal">
           {display}

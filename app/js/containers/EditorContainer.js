@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Draggable from 'react-draggable'
-
 import TextEditorContainer from './TextEditorContainer'
 import TerminalContainer from './TerminalContainer'
 import MarkdownContainer from './MarkdownContainer'
+
+import DraggableDiv from '../components/DraggableDiv'
 
 import '../../css/style.css'
 
@@ -17,36 +17,20 @@ class EditorContainer extends React.Component {
       width: 0,
       height: 0
     }
-    this.handleDrag = this.handleDrag.bind(this)
-    this.handleResize = this.handleResize.bind(this)
   }
 
   componentWillMount() {
-    window.addEventListener('resize', this.handleResize);
+   window.addEventListener('resize', this.handleResize);
   }
 
   componentDidMount() {
     this.terminalDomNode = ReactDOM.findDOMNode(this.refs.terminal)
     this.editorDomNode = ReactDOM.findDOMNode(this.refs.editor)
-    this.draggable = ReactDOM.findDOMNode(this.refs.draggable)
-    console.log(this.draggable.style)
   }
 
-  handleResize() {
-    let eW = this.editorDomNode.offsetWidth
-    let tW = this.terminalDomNode.offsetWidth
-    let calcNewWidthE = Math.floor((window.innerWidth + (eW - tW)) / 2)
-    let calcNewWidthT = Math.floor((window.innerWidth - (eW - tW)) / 2)
-    this.draggable.style.left = `${calcNewWidthE}px`
-    this.editorDomNode.style.width = `${calcNewWidthE}px`
-    this.terminalDomNode.style.width = `${calcNewWidthT}px`
-    this.draggable.style.webkitTransform = 'translate(0px, 0px)'
-    this.draggable.style.transform = 'translate(0px, 0px)'
-  }
-
-  handleDrag(event, ui) {
-    this.terminalDomNode.style.width = `${this.terminalDomNode.offsetWidth - ui.deltaX}px`
-    this.editorDomNode.style.width = `${this.editorDomNode.offsetWidth + ui.deltaX}px`
+  getElementTransform(el) {
+    let compStyle = window.getComputedStyle(el, null)
+    return parseInt(compStyle.getPropertyValue("-webkit-transform").split(",")[4])
   }
 
   render() {
@@ -75,12 +59,7 @@ class EditorContainer extends React.Component {
             language={this.props.language}
             getEditorText={this.props.getEditorText}/>
         </div>
-        <Draggable
-            onMouseDown={this.handleMouseDown}
-            onDrag={this.handleDrag}
-            axis="x">
-            <div ref="draggable" className="draggable-div"></div>
-        </Draggable>
+        <DraggableDiv />
         <div ref="terminal" className="mdl-cell mdl-cell--6-col terminal">
           {display}
         </div>

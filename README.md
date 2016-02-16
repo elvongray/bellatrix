@@ -1,14 +1,13 @@
 # bellatrix
 ![screenshot](media/screenshot.png)
 
-An offline Javscript, Ruby, Coffescript and Markdown editor. This editor is aimed at beginners who want an easy to use tool for learning programming. This editor is not to be used as a full development environment as there are more powerful ones like [Sublime](http://www.sublimetext.com) and [Atom](https://atom.io).
+An offline Javscript, Ruby, Coffescript and Markdown editor. This editor is just a proof of concept, I was experimenting with emscripten.
+This editor is not to be used as a development environment as there are more powerful ones like [Sublime](http://www.sublimetext.com) and [Atom](https://atom.io).
 
-## Install
+## Download
 
-## Features
-
-## Setup
-
-## Usage
+## Develop
 
 ## Licence
+
+MIT © [Arinde Eniola](http://github.com/andela-earinde)

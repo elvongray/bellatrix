@@ -1,12 +1,15 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: {
-    app: ['webpack/hot/dev-server', './app/js/app.js']
-  },
+  devtool: 'cheap-eval-source-map',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    './app/js/app.js'
+  ],
 
   output: {
-    path: './app/js',
+    path: './app/dist',
     filename: 'bundle.js',
     publicPath: 'http://localhost:8080/app/'
   },

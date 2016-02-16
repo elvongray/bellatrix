@@ -199,7 +199,7 @@ if (process.platform == 'darwin') {
 }
 
 // Add  developer tool only during development
-if (process.env.NODE_ENV == 'development') {
+if (true) {
   template[2].submenu.push(
     {
       label: 'Toggle Developer Tools',

@@ -14,7 +14,6 @@ import EditorContainer from './containers/EditorContainer'
 class Bellatrix extends React.Component {
 
   constructor() {
-    super();
     this.state = {
       theme: 'twilight',
       language: 'javascript',

@@ -7,6 +7,16 @@ This editor is not to be used as a development environment as there are more pow
 ## Download
 
 ## Develop
+Built with [electron](http://electron.atom.io)
+
+###### Commands
+- Set the dev env: `export NODE_ENV='development'`
+- Init: `npm install`
+- Start webpack dev server: `npm run-script watch`
+- Start electron: `npm start`
+- Bundle dependencies: `npm runs-script bundle`
+- Build for osx: `npm runs-script build-osx`
+
 
 ## Licence
 

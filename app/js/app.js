@@ -45,6 +45,17 @@ class Bellatrix extends React.Component {
     //initialize context menu
     contextMenu()
 
+    // register ipc listeners
+    this.registerIpcListeners()
+
+    // Register method for loading saved state
+    AppStore.addLoadSavedStateListener(this.loadSavedState.bind(this));
+
+    // Register method for changing language
+    AppStore.addChangeLanguageListener(this.changeLanguage.bind(this));
+  }
+
+  registerIpcListeners() {
     ipc.on('change-theme', (theme) => {
       this.changeEditorTheme(theme);
       GeneralActions.saveCurrentState(this.state);
@@ -55,11 +66,9 @@ class Bellatrix extends React.Component {
       GeneralActions.saveCurrentState(this.state);
     });
 
-    // Register method for loading saved state
-    AppStore.addLoadSavedStateListener(this.loadSavedState.bind(this));
-
-    // Register method for changing language
-    AppStore.addChangeLanguageListener(this.changeLanguage.bind(this));
+    ipc.on('loaded-editor-text', (data) => {
+      GeneralActions.dispatchLoadedEditorText(data);
+    })
   }
 
   componentDidMount() {

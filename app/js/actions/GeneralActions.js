@@ -1,8 +1,11 @@
 const fs = window.require('fs');
+const path = window.require("path");
+const ipc = window.require('ipc');
 
 import AppDispatcher from '../dispatcher/AppDispatcher'
 
-let dir = './app/js/stores/'
+let dir = `${path.dirname(require.main.filename)}/app/js/stores/`;
+
 
 const GeneralActions = {
 
@@ -36,22 +39,21 @@ const GeneralActions = {
     });
   },
 
+  // send a message to the main process to save the
+  // current editor state
   saveEditorText(text, language) {
-    fs.writeFile(`${dir}${language}.txt`, text, (err) => {
-      if(err) {
-        console.log("Error writing into file");
-      }
-    });
+    ipc.send('save-editor-text', {text: text, language: language});
   },
 
   loadSavedEditorText(language) {
-    fs.readFile(`${dir}${language}.txt`, 'utf8', (err, data) => {
+    ipc.send('load-editor-text', {language: language});
+  },
 
-      AppDispatcher.dispatch({
+  dispatchLoadedEditorText(data) {
+    AppDispatcher.dispatch({
         actionType: "LOAD_SAVED_TEXT",
         data: data
-      });
-    })
+    });
   }
 }
 

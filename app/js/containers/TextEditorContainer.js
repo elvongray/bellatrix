@@ -15,6 +15,7 @@ class TextEditorContainer extends React.Component {
     this.state = {
       cursorPosition: {row: 0, column: 0}
     }
+    this.currentLanguage = this.props.language
   }
 
   changeTheme(theme) {
@@ -24,6 +25,7 @@ class TextEditorContainer extends React.Component {
   changeLanguage(language) {
     if (language === 'coffeescript') language = 'coffee';
     this.aceEditor.session.setMode(`ace/mode/${language}`);
+    this.currentLanguage = language;
     this.aceEditor.setValue("");
   }
 
@@ -34,11 +36,6 @@ class TextEditorContainer extends React.Component {
 
     if (nextProps.language !== this.props.language) {
       this.changeLanguage(nextProps.language);
-    }
-
-    // Load saved text when a prop change is detected
-    if (nextProps.language !== this.props.language){
-      GeneralActions.loadSavedEditorText(nextProps.language);
     }
   }
 
@@ -124,9 +121,11 @@ class TextEditorContainer extends React.Component {
     if (this.props.language === "markdown") {
       this.props.getEditorText(this.aceEditor.getValue());
     }
-    // automatically save text in editor when ther is a change
+    // automatically save text in editor when there is a change
     if (event.data.action == 'insertText' || event.data.action == 'removeText') {
-      this.saveEditorText();
+      // ensure the editor text is saved only if the current language is equal to
+      // the language passed through the props.
+      this.currentLanguage == this.props.language ? this.saveEditorText() : null;
     }
   }
 
